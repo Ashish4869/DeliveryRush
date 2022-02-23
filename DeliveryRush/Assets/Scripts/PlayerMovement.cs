@@ -7,13 +7,29 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// This class does the following
     /// 1.Control movement
+    /// 2.Activates the arrow for better navigation
+    /// 3.Sets Colors when package picked
     /// </summary>
     
 
     float _speed = 10f;
     float _rotationSpeed = 1.0f;
- 
+    SpriteRenderer _carSprite;
 
+    [SerializeField]
+    GameObject _arrow;
+
+
+    private void Awake()
+    {
+        GameManager.OnPackagePicked += HighlightCar;
+    }
+
+    private void Start()
+    {
+        _carSprite = GetComponent<SpriteRenderer>();
+
+    }
     void Update()
     {
         CalcMovment();
@@ -39,6 +55,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    void HighlightCar()
+    {
+        _carSprite.color = Color.green;
+        _arrow.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnPackagePicked -= HighlightCar;
+    }
 
 
 }

@@ -13,12 +13,6 @@ public class Pickup : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            SpriteRenderer playerSprite = collision.GetComponent<SpriteRenderer>();
-
-            if(playerSprite != null)
-            {
-                playerSprite.color = Color.green;
-            }
             FindObjectOfType<GameManager>().OnPackagePickedEvent();
             Destroy(gameObject);
         }
