@@ -7,8 +7,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// This class does the following
     /// 1.Control movement
-    /// 2.Activates the arrow for better navigation
-    /// 3.Sets Colors when package picked
+    /// 2.Sets Colors when package picked and delivered
     /// </summary>
     
 
@@ -23,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         GameManager.OnPackagePicked += HighlightCar;
+        GameManager.OnPackageDelivered += RemoveHighlight;
     }
 
     private void Start()
@@ -55,15 +55,18 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    void HighlightCar()
-    {
-        _carSprite.color = Color.green;
-        _arrow.SetActive(true);
-    }
+    //Highlight car when the package is picked
+    void HighlightCar() => _carSprite.color = Color.green;
+  
+
+    //Remove the highlight when the package is delivered
+    void RemoveHighlight() => _carSprite.color = Color.white;
+   
 
     private void OnDestroy()
     {
         GameManager.OnPackagePicked -= HighlightCar;
+        GameManager.OnPackageDelivered -= RemoveHighlight;
     }
 
 

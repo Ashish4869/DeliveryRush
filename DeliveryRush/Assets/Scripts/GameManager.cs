@@ -7,11 +7,18 @@ public class GameManager : MonoBehaviour
     ///<summary>
     ///controls the games actions
     ///</summary>
+    
+
     public delegate void PackagePicked();
     public static event PackagePicked OnPackagePicked;
 
-    [SerializeField]
-    GameObject package;
+    public delegate void PackageDelivered();
+    public static event PackageDelivered OnPackageDelivered;
+
+    public delegate void PackageOrdered(int ID);
+    public static event PackageOrdered OnPackageOrdered;
+
+ 
 
     public void OnPackagePickedEvent()
     {
@@ -21,16 +28,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void OnPackageDeliveredEvent()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(OnPackageDelivered != null)
         {
-            SpawnPackage();
+            OnPackageDelivered();
         }
     }
 
-    void SpawnPackage()
+    public void OnPackageOrderedEvent()
     {
-        Instantiate(package, transform.position, Quaternion.identity);
+        if (OnPackageOrdered != null)
+        {
+            OnPackageOrdered(1);
+        }
+    }
+
+ 
+
+
+    public void RepositionElement(GameObject gameobject)
+    {
+        gameobject.transform.position = new Vector3(2000, 6000, 0);
     }
 }

@@ -11,15 +11,30 @@ public class Arrow : MonoBehaviour
 
     [SerializeField] Transform delivery;
     [SerializeField] Transform player;
+
+    bool _packagePicked = false;
+
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     void Start()
     {
-        
+        GameManager.OnPackagePicked += PackagePicked;
+        GameManager.OnPackageDelivered += PackageDelivered;
     }
 
     private void Update()
     {
-        PointToDestination();
-        TiltToDestination();
+        if(_packagePicked == true)
+        {
+
+            PointToDestination();
+            TiltToDestination();
+        }
     }
 
 
@@ -36,5 +51,25 @@ public class Arrow : MonoBehaviour
         transform.position = player.position - transform.right;
     }
 
-   
+
+    void PackagePicked()
+    {
+        _packagePicked = true;
+    }
+
+    void PackageDelivered()
+    {
+        _packagePicked = false;
+        gameManager.RepositionElement(this.gameObject);
+    }
+
+    
+
+    private void OnDestroy()
+    {
+        GameManager.OnPackagePicked -= PackagePicked;
+        GameManager.OnPackageDelivered -= PackagePicked;
+    }
+
+
 }

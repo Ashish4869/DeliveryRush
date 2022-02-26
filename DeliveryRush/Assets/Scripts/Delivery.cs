@@ -5,26 +5,25 @@ using UnityEngine;
 public class Delivery : MonoBehaviour
 {
     ///<summary>
-    ///deals with the delivery of the food to customer
+    ///deals with the delivery of the food to customer and triggers event package has been delivered
     ///</summary>
-   
+
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-            SpriteRenderer playerSprite = collision.GetComponent<SpriteRenderer>();
-
-            if(playerSprite != null)
-            {
-                playerSprite.color = Color.white;
-            }
+            gameManager.OnPackageDeliveredEvent();
         }
-        RepositionMarker();
+        gameManager.RepositionElement(this.gameObject);
     }
 
-    void RepositionMarker()
-    {
-        transform.position = new Vector3(1000, 1000, 0);
-    }
+    
 }
