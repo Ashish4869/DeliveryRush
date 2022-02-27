@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b14a0999c32f52439ac2c2f5d71f669, type: 3}
   m_Name: French Fries
   m_EditorClassIdentifier: 
-  foodID: 1
+  foodID: 12
   foodName: FrenchFries
-  foodColor: {r: 0.9056604, g: 0.84652674, b: 0.03844783, a: 1}
+  foodSprite: {fileID: 21300000, guid: c0915fc6c8b6e6f46b4289c0ae2f26a4, type: 3}

@@ -16,6 +16,12 @@ public class Pickup : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
+    private void Start()
+    {
+       
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -25,8 +31,5 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    public void SetPickUpID(int id)
-    {
-        pickupID = id;
-    }
+    
 }

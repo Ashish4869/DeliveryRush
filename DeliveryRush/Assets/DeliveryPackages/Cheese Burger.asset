@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b14a0999c32f52439ac2c2f5d71f669, type: 3}
   m_Name: Cheese Burger
   m_EditorClassIdentifier: 
-  foodID: 0
+  foodID: 11
   foodName: Cheese Burger
-  foodColor: {r: 0.8584906, g: 0.24701849, b: 0.24701849, a: 1}
+  foodSprite: {fileID: 21300000, guid: ca91825f9254b1340a5ed2ca8808b58c, type: 3}

@@ -14,6 +14,9 @@ public class HotelManager : MonoBehaviour
     [SerializeField]
     GameObject package;
 
+    FoodPackageSO _OrderedFood;
+    Vector3 _hotelPos;
+
     SpriteRenderer _packageSprite;
 
     private void Awake()
@@ -23,8 +26,6 @@ public class HotelManager : MonoBehaviour
     }
 
     
-
-    public List<FoodPackageSO> foodItems;
 
     // Start is called before the first frame update
     void Start()
@@ -37,34 +38,40 @@ public class HotelManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OrderFood(0);
+            //gameManager.OnPackageOrderedEvent(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            OrderFood(1);
+            //gameManager.OnPackageOrderedEvent(1);
         }
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
-            OrderFood(2);
+            //gameManager.OnPackageOrderedEvent(2);
         }
 
     }
 
-    void OrderFood(int id)
+    void OrderFood()
     {
-        Debug.Log("You have Ordered : " + foodItems[id].GetFoodName());
-        _packageSprite.color = foodItems[id].GetFoodColor();
-        SpawnPackage();
+       _packageSprite.sprite = _OrderedFood.GetFoodSprite();
+        SpawnPackage(_hotelPos);
     }
 
-    void SpawnPackage()
+    void SpawnPackage(Vector3 pos)
     {
-        Instantiate(package, transform.position, Quaternion.identity);
+        package.transform.position = pos;
     }
 
     private void OnDestroy()
     {
         GameManager.OnPackageOrdered -= OrderFood;
+    }
+
+    public void InitiateOrder(FoodPackageSO FoodItem , Vector3 HotelPosition)
+    {
+        _OrderedFood = FoodItem;
+        _hotelPos = HotelPosition;
+        gameManager.OnPackageOrderedEvent();
     }
 
 }

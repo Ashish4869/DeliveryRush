@@ -13,15 +13,31 @@ public class DeliveryManager : MonoBehaviour
     Delivery delivery;
 
 
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     private void Start()
     {
        delivery = GetComponentInChildren<Delivery>();
-        GameManager.OnPackagePicked += ShowDeliveryMarker;
+       GameManager.OnPackagePicked += ShowDeliveryMarker;
     }
 
     void ShowDeliveryMarker()
     {
-        delivery.transform.position = locations[0].position;
+        int prev = -1;
+        int i = Random.Range(0, 3);
+
+        if(prev == i)
+        {
+            i = Random.Range(0, 3);
+        }
+
+        delivery.transform.position = locations[i].position;
+        prev = i;
     }
 
     private void OnDestroy()

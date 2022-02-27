@@ -12,16 +12,16 @@ public class FoodPackageSO : ScriptableObject
 
     public int foodID = 00;
     public string foodName = "Name of the food";
-    public Color foodColor; //later must change this to food sprite
+    public Sprite foodSprite;
 
     public int GetFoodID()
     {
         return foodID;
     }
 
-    public Color GetFoodColor()
+    public Sprite GetFoodSprite()
     {
-        return foodColor;
+        return foodSprite;
     }
 
     public string GetFoodName()

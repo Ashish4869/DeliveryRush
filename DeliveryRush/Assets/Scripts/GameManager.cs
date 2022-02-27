@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public delegate void PackageDelivered();
     public static event PackageDelivered OnPackageDelivered;
 
-    public delegate void PackageOrdered(int ID);
+    public delegate void PackageOrdered();
     public static event PackageOrdered OnPackageOrdered;
 
  
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         if (OnPackageOrdered != null)
         {
-            OnPackageOrdered(1);
+            OnPackageOrdered();
         }
     }
 
@@ -49,6 +49,6 @@ public class GameManager : MonoBehaviour
 
     public void RepositionElement(GameObject gameobject)
     {
-        gameobject.transform.position = new Vector3(2000, 6000, 0);
+        gameobject.transform.position = new Vector3(2000, 6000, 100);
     }
 }
