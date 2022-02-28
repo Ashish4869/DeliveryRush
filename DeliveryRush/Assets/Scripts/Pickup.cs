@@ -8,11 +8,13 @@ public class Pickup : MonoBehaviour
     ///This script triggers the event that a pickup as been obtained
     ///</summary>
 
+    EventManager eventManager;
     GameManager gameManager;
     int pickupID;
 
     private void Awake()
     {
+        eventManager = FindObjectOfType<EventManager>();
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -26,7 +28,7 @@ public class Pickup : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            gameManager.OnPackagePickedEvent();
+            eventManager.OnPackagePickedEvent();
             gameManager.RepositionElement(this.gameObject);
         }
     }

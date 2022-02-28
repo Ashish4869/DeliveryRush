@@ -220,7 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881166f5c4fe00645b73aad5eb9f2d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrow: {fileID: 164449433}
 --- !u!70 &136937967
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -401,6 +400,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   package: {fileID: 862304624}
+--- !u!1 &360410746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360410748}
+  - component: {fileID: 360410747}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &360410747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360410746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfe95ea2bc7c184e824a9a45c8d9899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &360410748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360410746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &460261512
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +932,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 323529722}
     m_Modifications:
+    - target: {fileID: -3709654956130511450, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_Radius
+      value: 4.121479
+      objectReference: {fileID: 0}
+    - target: {fileID: -3709654956130511450, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.08639908
+      objectReference: {fileID: 0}
+    - target: {fileID: -3709654956130511450, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.023563385
+      objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745896, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -938,6 +992,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: cb5d226953eed1d49b5e8649a80a8ed1, type: 3}
+    - target: {fileID: 8128052258196745897, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745899, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_Name
       value: Hotel 2
@@ -984,6 +1042,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 323529722}
     m_Modifications:
+    - target: {fileID: -3709654956130511450, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_Radius
+      value: 4.381403
+      objectReference: {fileID: 0}
+    - target: {fileID: -3709654956130511450, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.031251907
+      objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745896, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1032,6 +1098,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0e778f1ae53a98948b1b96dc45172906, type: 3}
+    - target: {fileID: 8128052258196745897, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745899, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_Name
       value: Hotel 1

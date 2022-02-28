@@ -15,14 +15,11 @@ public class PlayerMovement : MonoBehaviour
     float _rotationSpeed = 1.0f;
     SpriteRenderer _carSprite;
 
-    [SerializeField]
-    GameObject _arrow;
-
 
     private void Awake()
     {
-        GameManager.OnPackagePicked += HighlightCar;
-        GameManager.OnPackageDelivered += RemoveHighlight;
+        EventManager.OnPackagePicked += HighlightCar;
+        EventManager.OnPackageDelivered += RemoveHighlight;
     }
 
     private void Start()
@@ -65,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.OnPackagePicked -= HighlightCar;
-        GameManager.OnPackageDelivered -= RemoveHighlight;
+        EventManager.OnPackagePicked -= HighlightCar;
+        EventManager.OnPackageDelivered -= RemoveHighlight;
     }
 
 

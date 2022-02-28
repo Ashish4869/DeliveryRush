@@ -9,10 +9,12 @@ public class Delivery : MonoBehaviour
     ///</summary>
 
     GameManager gameManager;
+    EventManager eventManager;
 
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        eventManager = FindObjectOfType<EventManager>();
     }
 
 
@@ -20,7 +22,7 @@ public class Delivery : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            gameManager.OnPackageDeliveredEvent();
+            eventManager.OnPackageDeliveredEvent();
         }
         gameManager.RepositionElement(this.gameObject);
     }

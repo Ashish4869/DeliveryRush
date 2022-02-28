@@ -23,8 +23,8 @@ public class Arrow : MonoBehaviour
 
     void Start()
     {
-        GameManager.OnPackagePicked += PackagePicked;
-        GameManager.OnPackageDelivered += PackageDelivered;
+        EventManager.OnPackagePicked += PackagePicked;
+        EventManager.OnPackageDelivered += PackageDelivered;
     }
 
     private void Update()
@@ -67,8 +67,8 @@ public class Arrow : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.OnPackagePicked -= PackagePicked;
-        GameManager.OnPackageDelivered -= PackagePicked;
+        EventManager.OnPackagePicked -= PackagePicked;
+        EventManager.OnPackageDelivered -= PackagePicked;
     }
 
 
