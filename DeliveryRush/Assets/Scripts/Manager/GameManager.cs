@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     ///<summary>
-    ///controls the games actions
+    ///controls the games actions and interacts with other managers
     ///</summary>
+
     
 
     public void RepositionElement(GameObject gameobject)
