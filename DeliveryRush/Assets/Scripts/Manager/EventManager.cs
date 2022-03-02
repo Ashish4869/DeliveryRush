@@ -5,7 +5,15 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     /// <summary>
-    /// Deals with all the events that happend in the game
+    /// Takes care of the events in the game , the events are :
+    /// 
+    /// 1.OnPackagePicked - event fired when the package has been picked by the player and the following takes place when the event is fired
+    ///     1.Arrow.cs - The arrow functionality is activated
+    ///     2.DeliveryManager.cs - The destination for delivery is selected and is brought in scene
+    ///     
+    /// 2.OnPackageDelivered
+    /// 
+    /// 3.OnPackageDelivered
     /// </summary>
 
 

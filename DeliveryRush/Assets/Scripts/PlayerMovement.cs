@@ -8,13 +8,19 @@ public class PlayerMovement : MonoBehaviour
     /// This class does the following
     /// 1.Control movement
     /// 2.Sets Colors when package picked and delivered
+    /// 3.Controls speed based on whether the car is on the road
     /// </summary>
-    
+
+
+    [SerializeField] float _onRoadSpeed = 10f;
+    [SerializeField] float _offRoadSpeed = 3f;
 
     float _speed = 10f;
     float _rotationSpeed = 1.0f;
+    bool _onRoad = true;
     SpriteRenderer _carSprite;
 
+    Vector3 _downward = Vector3.forward;
 
     private void Awake()
     {
@@ -25,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _carSprite = GetComponent<SpriteRenderer>();
-
     }
+
     void Update()
     {
         CalcMovment();
@@ -37,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
     {
         float verticalDirection = Input.GetAxisRaw("Vertical");
         float horizontalDirection = -Input.GetAxisRaw("Horizontal");
+
+        //change the speed on going offroad/onroad
+        _speed = (_onRoad ? _onRoadSpeed : _offRoadSpeed);
+        
 
         //forward-backward movement of the vehicle
         if (verticalDirection != 0)
@@ -50,6 +60,25 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, _rotationSpeed * horizontalDirection));
         }
         
+        
+        
+    }
+
+    //Deals with the speed of the car based on the on its on
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("OffRoad"))
+        {
+            _onRoad =false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("OffRoad"))
+        {
+            _onRoad = true;
+        }
     }
 
     //Highlight car when the package is picked
@@ -58,7 +87,9 @@ public class PlayerMovement : MonoBehaviour
 
     //Remove the highlight when the package is delivered
     void RemoveHighlight() => _carSprite.color = Color.white;
-   
+
+    
+
 
     private void OnDestroy()
     {

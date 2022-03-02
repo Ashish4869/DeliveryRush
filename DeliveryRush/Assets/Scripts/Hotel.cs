@@ -8,9 +8,12 @@ public class Hotel : MonoBehaviour
     /// <summary>
     /// Deals with placing order that you can make on a particular hotel
     /// </summary>
+    [SerializeField]
+    Transform _packageSpawnPoint;
 
     [SerializeField]
     int _HotelID;
+
 
     [SerializeField]
     [TextArea(5,3)]
@@ -48,7 +51,7 @@ public class Hotel : MonoBehaviour
     {
        if(id <= _foodItems.Count)
        {
-            _hotelManager.InitiateOrder(_foodItems[id-1], transform.position);
+            _hotelManager.InitiateOrder(_foodItems[id-1], _packageSpawnPoint.position);
        }
        
     }

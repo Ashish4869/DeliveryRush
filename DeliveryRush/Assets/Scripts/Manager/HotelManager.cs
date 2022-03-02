@@ -15,6 +15,8 @@ public class HotelManager : MonoBehaviour
     [SerializeField]
     GameObject package;
 
+   
+
     FoodPackageSO _OrderedFood;
     Vector3 _hotelPos;
 

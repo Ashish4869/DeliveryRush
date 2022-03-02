@@ -11,6 +11,7 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField]
     List<Transform> locations;
     Delivery delivery;
+    int prev = -1;
 
 
     private void Start()
@@ -21,7 +22,6 @@ public class DeliveryManager : MonoBehaviour
 
     void ShowDeliveryMarker()
     {
-        int prev = -1;
         int i = Random.Range(0, 3);
 
         if(prev == i)

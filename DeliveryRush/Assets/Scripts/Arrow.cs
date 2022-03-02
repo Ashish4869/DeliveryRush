@@ -31,9 +31,8 @@ public class Arrow : MonoBehaviour
     {
         if(_packagePicked == true)
         {
-
-            PointToDestination();
-            TiltToDestination();
+            PointToDestination(); //Makes the arrow point towards the destination
+            TiltToDestination(); //Makes the arrow tilt towards direction of the destination
         }
     }
 
