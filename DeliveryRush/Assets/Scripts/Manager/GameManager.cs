@@ -8,8 +8,16 @@ public class GameManager : MonoBehaviour
     ///controls the games actions and interacts with other managers
     ///</summary>
 
-    
+    [SerializeField]
 
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+
+        }
+    }
     public void RepositionElement(GameObject gameobject)
     {
         gameobject.transform.position = new Vector3(2000, 6000, 100);

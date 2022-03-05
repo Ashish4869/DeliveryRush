@@ -9,7 +9,6 @@ public class HotelManager : MonoBehaviour
     /// This script deals with choosing and instantiating food items
     /// </summary>
     
-    GameManager gameManager;
     EventManager eventManager;
 
     [SerializeField]
@@ -24,7 +23,6 @@ public class HotelManager : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
         eventManager = FindObjectOfType<EventManager>();
         _packageSprite = package.GetComponent<SpriteRenderer>();
     }
@@ -39,10 +37,10 @@ public class HotelManager : MonoBehaviour
 
    
 
-    void OrderFood()
+    void OrderFood(FoodPackageSO FoodItem)
     {
        _packageSprite.sprite = _OrderedFood.GetFoodSprite();
-        SpawnPackage(_hotelPos);
+        StartCoroutine(SpawnPackageAfterLoading(FoodItem.GetPrepTime()));
     }
 
     void SpawnPackage(Vector3 pos)
@@ -59,7 +57,13 @@ public class HotelManager : MonoBehaviour
     {
         _OrderedFood = FoodItem;
         _hotelPos = HotelPosition;
-        eventManager.OnPackageOrderedEvent();
+        eventManager.OnPackageOrderedEvent(FoodItem);
+    }
+
+    IEnumerator SpawnPackageAfterLoading(int prepTime)
+    {
+        yield return new WaitForSeconds(prepTime);
+        SpawnPackage(_hotelPos);
     }
 
 }

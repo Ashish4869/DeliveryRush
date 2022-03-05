@@ -15,3 +15,4 @@ MonoBehaviour:
   foodID: 21
   foodName: Fried Chicken
   foodSprite: {fileID: 21300000, guid: e5817bb3987bb3b44bad40e205744a6b, type: 3}
+  prepTime: 10

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     /// 1.Control movement
     /// 2.Sets Colors when package picked and delivered
     /// 3.Controls speed based on whether the car is on the road
+    /// 4.Disables Player when map is shown
     /// </summary>
 
 
@@ -18,13 +19,13 @@ public class PlayerMovement : MonoBehaviour
     float _speed = 10f;
     float _rotationSpeed = 1.0f;
     bool _onRoad = true;
+    bool _canDrive = true;
     SpriteRenderer _carSprite;
-
-    Vector3 _downward = Vector3.forward;
 
     private void Awake()
     {
         EventManager.OnPackagePicked += HighlightCar;
+        EventManager.OnShowMap += DisablePlayer;
         EventManager.OnPackageDelivered += RemoveHighlight;
     }
 
@@ -46,8 +47,13 @@ public class PlayerMovement : MonoBehaviour
 
         //change the speed on going offroad/onroad
         _speed = (_onRoad ? _onRoadSpeed : _offRoadSpeed);
-        
 
+
+        //make sure the player cant drive when the seeing the map
+        if (!_canDrive)
+        {
+            _speed = 0;
+        }
         //forward-backward movement of the vehicle
         if (verticalDirection != 0)
         {
@@ -88,13 +94,14 @@ public class PlayerMovement : MonoBehaviour
     //Remove the highlight when the package is delivered
     void RemoveHighlight() => _carSprite.color = Color.white;
 
-    
+    void DisablePlayer() => _canDrive = !_canDrive;
 
 
     private void OnDestroy()
     {
         EventManager.OnPackagePicked -= HighlightCar;
         EventManager.OnPackageDelivered -= RemoveHighlight;
+        EventManager.OnShowMap -= DisablePlayer;
     }
 
 
