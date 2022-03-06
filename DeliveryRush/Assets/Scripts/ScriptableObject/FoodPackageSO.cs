@@ -12,6 +12,7 @@ public class FoodPackageSO : ScriptableObject
 
     public int foodID = 00;
     public string foodName = "Name of the food";
+    public string foodDescription = "Describe food here in one liner";
     public Sprite foodSprite;
     public int prepTime;
 
@@ -33,6 +34,11 @@ public class FoodPackageSO : ScriptableObject
     public int GetPrepTime()
     {
         return prepTime;
+    }
+
+    public string GetFoodDesc()
+    {
+        return foodDescription;
     }
     
 }

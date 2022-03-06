@@ -8,20 +8,30 @@ public class Hotel : MonoBehaviour
     /// <summary>
     /// Deals with placing order that you can make on a particular hotel
     /// </summary>
-    [SerializeField]
-    Transform _packageSpawnPoint;
+   
 
+    [Header("Hotel Information")]
     [SerializeField]
     int _HotelID;
 
+    [SerializeField]
+    GameObject _orderUI;
 
     [SerializeField]
-    [TextArea(5,3)]
-    string message = "";  //later i have to change this to UI
+    string _hotelName;
 
-    public List<FoodPackageSO> _foodItems;
+    [SerializeField]
+    private List<FoodPackageSO> _foodItems;
 
 
+    [Header("Related Components")]
+    [SerializeField]
+    Transform _packageSpawnPoint;
+
+
+
+
+    EventManager _eventManager;
     HotelManager _hotelManager;
 
     bool _CanOrder = false;
@@ -29,6 +39,8 @@ public class Hotel : MonoBehaviour
     private void Awake()
     {
         _hotelManager = GetComponentInParent<HotelManager>();
+        _eventManager = FindObjectOfType<EventManager>();
+
     }
     public int GetHotelID()
     {
@@ -37,14 +49,11 @@ public class Hotel : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1) && _CanOrder)
+        if(Input.GetKeyDown(KeyCode.E) && _CanOrder)
         {
-            CheckIfItemPresent(1);
+            _eventManager.OnOrderingfromRestaurantEvent(_foodItems);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2) && _CanOrder)
-        {
-            CheckIfItemPresent(2);
-        }
+        
     }
 
     void CheckIfItemPresent(int id)
@@ -60,7 +69,7 @@ public class Hotel : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            Debug.Log(message);
+            _orderUI.SetActive(true);
         }
         _CanOrder = true;
     }
@@ -69,7 +78,7 @@ public class Hotel : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Leaving Already?");
+            _orderUI.SetActive(false);
         }
         _CanOrder = false;
     }

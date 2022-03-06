@@ -28,8 +28,6 @@ public class HotelManager : MonoBehaviour
     }
 
     
-
-    // Start is called before the first frame update
     void Start()
     {
         EventManager.OnPackageOrdered += OrderFood;
@@ -39,8 +37,8 @@ public class HotelManager : MonoBehaviour
 
     void OrderFood(FoodPackageSO FoodItem)
     {
-       _packageSprite.sprite = _OrderedFood.GetFoodSprite();
-        StartCoroutine(SpawnPackageAfterLoading(FoodItem.GetPrepTime()));
+        _packageSprite.sprite = FoodItem.GetFoodSprite();
+        //StartCoroutine(SpawnPackageAfterLoading(FoodItem.GetPrepTime()));
     }
 
     void SpawnPackage(Vector3 pos)

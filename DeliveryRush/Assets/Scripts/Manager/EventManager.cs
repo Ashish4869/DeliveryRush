@@ -25,6 +25,9 @@ public class EventManager : MonoBehaviour
     /// 4.OnShowMapEvent - Event is fired when we press on the tab button , following takes place when the event is fired
     ///     1.PlayerMovment.cs - Player is disabled
     ///     2.MapManager.cs - MiniMap is shown
+    ///     
+    /// 5.OnOrderingFood - Event is fired when the we want to order food from a restuarant , following takes placen when the event is fired
+    ///     1.HotelUIManager.cs - Shows the menu
     /// </summary>
 
 
@@ -36,6 +39,9 @@ public class EventManager : MonoBehaviour
 
     public delegate void PackageOrdered(FoodPackageSO foodItem);
     public static event PackageOrdered OnPackageOrdered;
+
+    public delegate void OrderingFromRestaurant(List<FoodPackageSO> foodItems);
+    public static event OrderingFromRestaurant OnOrderingFromRestaurant;
 
     public delegate void ShowMap();
     public static event ShowMap OnShowMap;
@@ -69,6 +75,14 @@ public class EventManager : MonoBehaviour
         if (OnShowMap != null)
         {
             OnShowMap();
+        }
+    }
+
+    public void OnOrderingfromRestaurantEvent(List<FoodPackageSO> foodItems)
+    {
+        if(OnOrderingFromRestaurant != null)
+        {
+            OnOrderingFromRestaurant(foodItems);
         }
     }
    

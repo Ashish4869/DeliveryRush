@@ -8,25 +8,30 @@ public class FoodPrepLoader : MonoBehaviour
 {
 
     /// <summary>
-    /// for updating the loading bar and then destroying it once its done its job and put the real food sprite
+    /// for updating the loading bar and then making it possible to pack the food to parcel
     /// </summary>
+    
     [SerializeField]
     Image _loader;
 
     [SerializeField]
-    GameObject _foodLoader;
+    GameObject FoodLoader;
 
     [SerializeField]
     Image _foodImage;
 
-    [SerializeField]
     float _foodPrepTime = 5;
+
+
 
     float _remaingPrepTime;
     bool _showLoading = false;
 
+    HotelUIManager hoteluiManager;
+
     void Start()
     {
+        hoteluiManager = FindObjectOfType<HotelUIManager>();
         EventManager.OnPackageOrdered += ShowAnimation;
     }
 
@@ -43,7 +48,7 @@ public class FoodPrepLoader : MonoBehaviour
             }
             else
             {
-                _foodLoader.gameObject.SetActive(false);
+                hoteluiManager.FoodPrepared();
             }
         }
         
@@ -54,8 +59,8 @@ public class FoodPrepLoader : MonoBehaviour
         _foodPrepTime = FoodItem.GetPrepTime();
         _remaingPrepTime = _foodPrepTime;
         _showLoading = true;
-        _foodLoader.gameObject.SetActive(true);
+        FoodLoader.SetActive(true);
         _foodImage.sprite = FoodItem.GetFoodSprite();
-
+        
     }
 }

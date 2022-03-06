@@ -8,6 +8,9 @@ TagManager:
   - Delivery
   - Road
   - OffRoad
+  - FoodItemUI
+  - FoodSprite
+  - FoodDesc
   layers:
   - Default
   - TransparentFX
