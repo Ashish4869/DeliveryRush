@@ -38,7 +38,7 @@ public class NPC : MonoBehaviour
 
     void FindWayPointToGo()
     {
-        if(Vector3.Distance(transform.position , _targetPosition.position) < 1f) //if we have come close enough , start moving towards next waypoint
+        if(SqrDistance(_targetPosition.position) < 1f) //if we have come close enough , start moving towards next waypoint
         {
             _currentIndex = (_currentIndex + 1) % (_waypoints.Length);
             _targetPosition = _waypoints[_currentIndex];
@@ -48,6 +48,13 @@ public class NPC : MonoBehaviour
         {
             GoToPoint();
         }
+    }
+
+    float SqrDistance(Vector3 target)
+    {
+        Vector3 offset = target - transform.position;
+        float sqrLen = offset.sqrMagnitude;
+        return sqrLen;
     }
 
     void GoToPoint()

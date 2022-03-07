@@ -6,62 +6,26 @@ public class HotelManager : MonoBehaviour
 {
 
     /// <summary>
-    /// This script deals with choosing and instantiating food items
+    /// Retreives info from a hotel and Places the food package at the appropriate place
     /// </summary>
-    
-    EventManager eventManager;
 
     [SerializeField]
     GameObject package;
-
-   
-
-    FoodPackageSO _OrderedFood;
-    Vector3 _hotelPos;
 
     SpriteRenderer _packageSprite;
 
     private void Awake()
     {
-        eventManager = FindObjectOfType<EventManager>();
         _packageSprite = package.GetComponent<SpriteRenderer>();
     }
 
-    
-    void Start()
-    {
-        EventManager.OnPackageOrdered += OrderFood;
-    }
+    void SpawnPackage(Vector3 HotelPosition) => package.transform.position = HotelPosition;
 
-   
-
-    void OrderFood(FoodPackageSO FoodItem)
+    //gets the location and food to be spawned
+    public void InitiateOrder(Vector3 HotelPosition , FoodPackageSO Food)
     {
-        _packageSprite.sprite = FoodItem.GetFoodSprite();
-        //StartCoroutine(SpawnPackageAfterLoading(FoodItem.GetPrepTime()));
-    }
-
-    void SpawnPackage(Vector3 pos)
-    {
-        package.transform.position = pos;
-    }
-
-    private void OnDestroy()
-    {
-        EventManager.OnPackageOrdered -= OrderFood;
-    }
-
-    public void InitiateOrder(FoodPackageSO FoodItem , Vector3 HotelPosition)
-    {
-        _OrderedFood = FoodItem;
-        _hotelPos = HotelPosition;
-        eventManager.OnPackageOrderedEvent(FoodItem);
-    }
-
-    IEnumerator SpawnPackageAfterLoading(int prepTime)
-    {
-        yield return new WaitForSeconds(prepTime);
-        SpawnPackage(_hotelPos);
+        _packageSprite.sprite = Food.GetFoodSprite();
+        SpawnPackage(HotelPosition);
     }
 
 }

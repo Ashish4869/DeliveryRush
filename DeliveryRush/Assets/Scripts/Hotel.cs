@@ -6,10 +6,9 @@ using UnityEngine;
 public class Hotel : MonoBehaviour
 {
     /// <summary>
-    /// Deals with placing order that you can make on a particular hotel
+    /// Gets the Data of the food to be spawned and sends the data to the hotel manager
     /// </summary>
    
-
     [Header("Hotel Information")]
     [SerializeField]
     int _HotelID;
@@ -23,13 +22,9 @@ public class Hotel : MonoBehaviour
     [SerializeField]
     private List<FoodPackageSO> _foodItems;
 
-
     [Header("Related Components")]
     [SerializeField]
     Transform _packageSpawnPoint;
-
-
-
 
     EventManager _eventManager;
     HotelManager _hotelManager;
@@ -40,7 +35,7 @@ public class Hotel : MonoBehaviour
     {
         _hotelManager = GetComponentInParent<HotelManager>();
         _eventManager = FindObjectOfType<EventManager>();
-
+        EventManager.OnPackageParceled += SendParcel;
     }
     public int GetHotelID()
     {
@@ -56,13 +51,15 @@ public class Hotel : MonoBehaviour
         
     }
 
-    void CheckIfItemPresent(int id)
+    //Gets the info and sends to the hotelmanager script
+    void SendParcel(FoodPackageSO Food)
     {
-       if(id <= _foodItems.Count)
-       {
-            _hotelManager.InitiateOrder(_foodItems[id-1], _packageSpawnPoint.position);
-       }
-       
+        int HotelID = Food.GetFoodID() / 10;
+
+        if(HotelID == _HotelID)
+        {
+            _hotelManager.InitiateOrder(_packageSpawnPoint.position , Food);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -12,12 +12,10 @@ public class EventManager : MonoBehaviour
     ///     2.DeliveryManager.cs - The destination for delivery is selected and is brought in scene
     ///     3.PlayerMovement.cs - Used to highlight the car , later should change to highlight ui
     ///     
-    ///     
     /// 2.OnPackageDelivered - Event fired when the package has been delivered to its respective proper destination , following takes when event is fired
     ///     1.Arrow.cs - The arrow is repositioned to spot player cannot see and it not made to follow the player
     ///     2.PlayerMovement.cs - Used to remove the highlight on the car , later should change to some UI change
     ///     
-    /// 
     /// 3.OnPackageOrdered - Event fired when a order is placed on the hotel , following takes place when the event is fired
     ///     1.HotelManager.cs - Spawns the ordered food as package on the scene after some time
     ///     2.FoodPreoLoader.cs - Shows the loading of the food
@@ -26,8 +24,12 @@ public class EventManager : MonoBehaviour
     ///     1.PlayerMovment.cs - Player is disabled
     ///     2.MapManager.cs - MiniMap is shown
     ///     
-    /// 5.OnOrderingFood - Event is fired when the we want to order food from a restuarant , following takes placen when the event is fired
-    ///     1.HotelUIManager.cs - Shows the menu
+    /// 5.OnOrderingFromRestaurant - Event is fired when the we want to order food from a restuarant , following takes place when the event is fired
+    ///     1.HotelUIManager.cs - Shows the UI for buying food
+    ///     2.FoodPrepLoader.cs - Gets the information on food that has been ordered and displays as so
+    ///     
+    /// 6.OnPackageParceled - Event is fired when we pack the food for parcel , following takes place when the event is fired
+    ///     1.Hotel.cs - The package is given the right sprite and put in the appropriate place
     /// </summary>
 
 
@@ -39,6 +41,9 @@ public class EventManager : MonoBehaviour
 
     public delegate void PackageOrdered(FoodPackageSO foodItem);
     public static event PackageOrdered OnPackageOrdered;
+
+    public delegate void PackageParcel(FoodPackageSO FoodID);
+    public static event PackageParcel OnPackageParceled;
 
     public delegate void OrderingFromRestaurant(List<FoodPackageSO> foodItems);
     public static event OrderingFromRestaurant OnOrderingFromRestaurant;
@@ -83,6 +88,14 @@ public class EventManager : MonoBehaviour
         if(OnOrderingFromRestaurant != null)
         {
             OnOrderingFromRestaurant(foodItems);
+        }
+    }
+
+    public void OnPackageParceledEvent(FoodPackageSO FoodID)
+    {
+        if (OnPackageParceled != null)
+        {
+            OnPackageParceled(FoodID);
         }
     }
    

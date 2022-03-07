@@ -10,7 +10,7 @@ TagManager:
   - OffRoad
   - FoodItemUI
   - FoodSprite
-  - FoodDesc
+  - Loader
   layers:
   - Default
   - TransparentFX
