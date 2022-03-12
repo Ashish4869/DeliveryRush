@@ -27,9 +27,12 @@ public class EventManager : MonoBehaviour
     /// 5.OnOrderingFromRestaurant - Event is fired when the we want to order food from a restuarant , following takes place when the event is fired
     ///     1.HotelUIManager.cs - Shows the UI for buying food
     ///     2.FoodPrepLoader.cs - Gets the information on food that has been ordered and displays as so
+    ///     3.MenuHeader.cs - Sets the heading to the approprite heading
     ///     
     /// 6.OnPackageParceled - Event is fired when we pack the food for parcel , following takes place when the event is fired
     ///     1.Hotel.cs - The package is given the right sprite and put in the appropriate place
+    ///
+    /// 7.OnOrderReceived - Event is fired when a new order is made from a customer , the following happends when the event is fired
     /// </summary>
 
 
@@ -50,6 +53,9 @@ public class EventManager : MonoBehaviour
 
     public delegate void ShowMap();
     public static event ShowMap OnShowMap;
+
+    public delegate void OrderReceived(string OrderDetails , int FoodID);
+    public static event OrderReceived OnOrderReceived;
 
     public void OnPackagePickedEvent()
     {
@@ -96,6 +102,14 @@ public class EventManager : MonoBehaviour
         if (OnPackageParceled != null)
         {
             OnPackageParceled(FoodID);
+        }
+    }
+
+    public void OnOrderRecievedEvent(string OrderDetails, int FoodID)
+    {
+        if(OnOrderReceived != null)
+        {
+            OnOrderReceived(OrderDetails,FoodID);
         }
     }
    

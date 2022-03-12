@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _offRoadSpeed = 3f;
 
     float _speed = 10f;
-    float _rotationSpeed = 1.0f;
+    float _rotationSpeed = 125f;
     bool _onRoad = true;
     bool _canDrive = true;
     SpriteRenderer _carSprite;
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         //turn only when you are moving
         if (horizontalDirection != 0 && verticalDirection !=0)
         {
-            transform.Rotate(new Vector3(0, 0, _rotationSpeed * horizontalDirection));
+            transform.Rotate(new Vector3(0, 0, _rotationSpeed * horizontalDirection * Time.deltaTime));
         }
         
         

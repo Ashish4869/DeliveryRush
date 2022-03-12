@@ -42,6 +42,8 @@ public class Hotel : MonoBehaviour
         return _HotelID;
     }
 
+    public string GetHotelName() => _hotelName;
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E) && _CanOrder)

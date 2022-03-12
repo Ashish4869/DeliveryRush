@@ -263,18 +263,24 @@ public class FoodPrepLoader : MonoBehaviour
 
             //get the hotel we ordered this from
             _eventManager.OnPackageParceledEvent(selectedFood);
-            hoteluiManager.HideMenu();
+            //hoteluiManager.HideMenu();
             hoteluiManager.ActivateButton(selectedFood);
-            Destroyfood();
+            //Destroyfood();
         }
     }
 
 
     public void Destroyfood()
     {
-        foreach (Transform item in FoodStatus.transform)
+        FoodStatus = GameObject.Find("HotelOrderUI/OrderStatusComponent/FoodStatus");
+
+        if (FoodStatus.transform.childCount > 0)
         {
-            Destroy(item.gameObject);
+            foreach (Transform item in FoodStatus.transform)
+            {
+                Destroy(item.gameObject);
+            }
         }
+        
     }
 }
