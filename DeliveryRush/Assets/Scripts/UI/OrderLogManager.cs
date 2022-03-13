@@ -18,21 +18,31 @@ public class OrderLogManager : MonoBehaviour
     [SerializeField]
     GameObject _OrderPrefab;
 
+    [SerializeField]
+    Animator _notifAnimator;
+
     GameObject OrderLogListGameObject;
-    int _orderPendingCount = 0;
+    int _orderPendingCount = 0; //counts the number of orders to be served;
     bool _showTable = false;
+    public string oldFood =""; //this stores the old food so that the event is not fired unnecessarily
 
-    List<List<string>> _OrderPendingList = new List<List<string>>();
+    GameManager _gameManager;
+    EventManager _eventManager;
 
-    // Start is called before the first frame update
+    List<List<string>> _OrderPendingList = new List<List<string>>(); //this stores the orders in a form of a matrix of size NX3 , where the rows have values of timestamp , food and hotel name
+
     void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>();
+        _eventManager = FindObjectOfType<EventManager>();
         EventManager.OnOrderReceived += UpdateOrderLog;
+        EventManager.OnPackageDelivered += FoodDelivered;
     }
 
-
+    //Updates the Orderlog UI
     void UpdateOrderLog(string OrderDetails , int foodID)
     {
+        //split the string and store in the matrix
         string[] order = OrderDetails.Split('-');
 
         _OrderPendingList.Add(new List<string>());
@@ -44,10 +54,21 @@ public class OrderLogManager : MonoBehaviour
 
         _orderPendingCount += 1;
 
+        //In case we have picked food but the order has not come yet , when the food comes we shall activate the navigation
+        if(order[1] == _gameManager.GetCurrentFoodInCar() && order[1] != oldFood)
+        {
+            oldFood = order[1];
+            _eventManager.OnPackagePickedEvent(order[1]);
+        }
+
+        //triggers animation for notication
+        _notifAnimator.SetTrigger("Animate");
+
         UpdateUI();
     }
 
 
+    //Updates the UI - the header and its contents
     void UpdateUI()
     {
         _OrdersPendingText.text = "Orders Pending (" + _orderPendingCount.ToString() + ")";
@@ -58,6 +79,7 @@ public class OrderLogManager : MonoBehaviour
         }
     }
 
+    //shows the list of orders present
     public void ShowTable()
     {
         _showTable = !_showTable;
@@ -70,11 +92,12 @@ public class OrderLogManager : MonoBehaviour
         ConfigureOrderList();
     }
 
+    //Configures the table of orders
     void ConfigureOrderList()
     {
         OrderLogListGameObject = GameObject.Find("OrderStatus/TableComponent/OrderLogList");
 
-
+        //destroy objects if we have any
         if (OrderLogListGameObject.transform.childCount != 0)
         {
             foreach (Transform item in OrderLogListGameObject.transform)
@@ -83,7 +106,9 @@ public class OrderLogManager : MonoBehaviour
             }
         }
 
-        int max = Mathf.Min(_OrderPendingList.Count, 9);
+        int max = Mathf.Min(_OrderPendingList.Count, 9); // we will show at max only 9 elements , has it will go out of screen
+
+        //instantiates objects as children
         for (int i = 0; i < max; i++)
         {
             GameObject child = Instantiate(_OrderPrefab);
@@ -94,8 +119,52 @@ public class OrderLogManager : MonoBehaviour
 
             for (int j = 0; j < 3; j++)
             {
-                texts[j].text = _OrderPendingList[i][j];
+                texts[j].text = _OrderPendingList[i][j]; // assigns the text for the table like format
             }
         }
     }
+
+    //removes an element from the list
+    void RemoveItemFromOrderList(string FoodName)
+    {
+        //finds the element to remove then removes it from the list
+        foreach  (var OrderDetails in _OrderPendingList)
+        {
+            if(OrderDetails[1] == FoodName)
+            {
+                _OrderPendingList.Remove(OrderDetails);
+                _orderPendingCount -= 1;
+                break;
+            }
+        }
+
+        UpdateUI();
+    }
+
+    //In case Food Delivered , we remove the element from the list
+     void FoodDelivered()
+     {
+        string FoodDelivered = _gameManager.GetCurrentFoodInCar();
+        _gameManager.RemoveCurrentFood();
+        oldFood = "";
+        RemoveItemFromOrderList(FoodDelivered);
+     }
+
+    //checking if the food obtained is in the order log list
+    public bool CheckIfInOrderList()
+    {
+        string food = _gameManager.GetCurrentFoodInCar();
+
+        foreach (var OrderDetails in _OrderPendingList)
+        {
+            if (OrderDetails[1] == food)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+   
 }

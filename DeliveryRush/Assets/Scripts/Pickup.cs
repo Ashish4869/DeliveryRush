@@ -10,28 +10,49 @@ public class Pickup : MonoBehaviour
 
     EventManager eventManager;
     GameManager gameManager;
-    int pickupID;
+    OrderLogManager _orderLogManager;
+    PickUIManager pickUIManager;
+
+    string _foodName = "";
 
     private void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
         gameManager = FindObjectOfType<GameManager>();
+        _orderLogManager = FindObjectOfType<OrderLogManager>();
+        pickUIManager = FindObjectOfType<PickUIManager>();
     }
-
-    private void Start()
-    {
-       
-    }
-
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-            eventManager.OnPackagePickedEvent();
+            pickUIManager.SetUpUI();
+
+            StoreObtainedFood();
+
+
+            if(IsInOrdersList())
+            {
+                eventManager.OnPackagePickedEvent(_foodName);
+            }
+            
             gameManager.RepositionElement(this.gameObject);
         }
     }
 
-    
+    void StoreObtainedFood()
+    {
+        gameManager.CurrentPackage(_foodName);
+    }
+
+    public void SetFoodName(string FoodName)
+    {
+        _foodName = FoodName;
+    }
+
+    bool IsInOrdersList() => _orderLogManager.CheckIfInOrderList();
+
+
 }

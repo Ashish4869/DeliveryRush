@@ -100,9 +100,8 @@ public class OrderManager : MonoBehaviour
         _timeStamp = gameClock.GetTime();
         
         //need to make this debug into a pass to UI
-       // Debug.Log(_timeStamp + " - " + FoodItems[rand].GetFoodName() + " - " + _hotelNames[FoodItems[rand].GetFoodID()/10]);
         int foodID = FoodItems[rand].GetFoodID() / 10;
-        _OrderDetails = _timeStamp + " - " + FoodItems[rand].GetFoodName() + " - " + _hotelNames[FoodItems[rand].GetFoodID() / 10];
+        _OrderDetails = _timeStamp + "-" + FoodItems[rand].GetFoodName() + "-" + _hotelNames[FoodItems[rand].GetFoodID() / 10];
         _eventManager.OnOrderRecievedEvent(_OrderDetails , foodID);
 
 

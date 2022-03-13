@@ -51,7 +51,7 @@ public class Arrow : MonoBehaviour
     }
 
 
-    void PackagePicked()
+    void PackagePicked(string foood)
     {
         _packagePicked = true;
     }
@@ -67,7 +67,6 @@ public class Arrow : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.OnPackagePicked -= PackagePicked;
-        EventManager.OnPackageDelivered -= PackagePicked;
     }
 
 

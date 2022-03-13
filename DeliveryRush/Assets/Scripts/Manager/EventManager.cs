@@ -10,7 +10,6 @@ public class EventManager : MonoBehaviour
     /// 1.OnPackagePicked - event fired when the package has been picked by the player and the following takes place when the event is fired
     ///     1.Arrow.cs - The arrow functionality is activated
     ///     2.DeliveryManager.cs - The destination for delivery is selected and is brought in scene
-    ///     3.PlayerMovement.cs - Used to highlight the car , later should change to highlight ui
     ///     
     /// 2.OnPackageDelivered - Event fired when the package has been delivered to its respective proper destination , following takes when event is fired
     ///     1.Arrow.cs - The arrow is repositioned to spot player cannot see and it not made to follow the player
@@ -36,7 +35,7 @@ public class EventManager : MonoBehaviour
     /// </summary>
 
 
-    public delegate void PackagePicked();
+    public delegate void PackagePicked(string FoodName);
     public static event PackagePicked OnPackagePicked;
 
     public delegate void PackageDelivered();
@@ -57,11 +56,11 @@ public class EventManager : MonoBehaviour
     public delegate void OrderReceived(string OrderDetails , int FoodID);
     public static event OrderReceived OnOrderReceived;
 
-    public void OnPackagePickedEvent()
+    public void OnPackagePickedEvent(string FoodName)
     {
         if (OnPackagePicked != null)
         {
-            OnPackagePicked();
+            OnPackagePicked(FoodName);
         }
     }
 

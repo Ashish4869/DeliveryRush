@@ -24,8 +24,8 @@ public class FoodPrepLoader : MonoBehaviour
     // _OrdersRemainingPrepTime[1,j] = 0-1 , indicates that there is an order and it it being processed
     // _OrdersRemainingPrepTime[1,j] = 1 , indicates that order is processed and ready for parcel
 
-    public float[] CurrentPrepTimes = new float[5]; //Holds info on the prep times of a current hotel
-    public Image[] _loader = new Image[4]; //Holds the references of the images in the hotel
+    float[] CurrentPrepTimes = new float[5]; //Holds info on the prep times of a current hotel
+    Image[] _loader = new Image[4]; //Holds the references of the images in the hotel
     int CurrentHotel = 0; //Current hotel which the UI corresponds to
     FoodPackageSO selectedFood; //food selected for pacelling
 

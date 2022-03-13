@@ -24,9 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.OnPackagePicked += HighlightCar;
         EventManager.OnShowMap += DisablePlayer;
-        EventManager.OnPackageDelivered += RemoveHighlight;
     }
 
     private void Start()
@@ -87,20 +85,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Highlight car when the package is picked
-    void HighlightCar() => _carSprite.color = Color.green;
-  
-
-    //Remove the highlight when the package is delivered
-    void RemoveHighlight() => _carSprite.color = Color.white;
-
     void DisablePlayer() => _canDrive = !_canDrive;
 
 
     private void OnDestroy()
     {
-        EventManager.OnPackagePicked -= HighlightCar;
-        EventManager.OnPackageDelivered -= RemoveHighlight;
         EventManager.OnShowMap -= DisablePlayer;
     }
 

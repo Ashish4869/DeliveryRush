@@ -11,12 +11,15 @@ public class HotelManager : MonoBehaviour
 
     [SerializeField]
     GameObject package;
-
+    PickUIManager _pickupUIManager;
+    Pickup pickup;
     SpriteRenderer _packageSprite;
 
     private void Awake()
     {
         _packageSprite = package.GetComponent<SpriteRenderer>();
+        pickup = package.GetComponent<Pickup>();
+        _pickupUIManager = FindObjectOfType<PickUIManager>();
     }
 
     void SpawnPackage(Vector3 HotelPosition) => package.transform.position = HotelPosition;
@@ -25,6 +28,9 @@ public class HotelManager : MonoBehaviour
     public void InitiateOrder(Vector3 HotelPosition , FoodPackageSO Food)
     {
         _packageSprite.sprite = Food.GetFoodSprite();
+        pickup.SetFoodName(Food.GetFoodName());
+        _pickupUIManager.SetSprite(_packageSprite.sprite);
+        
         SpawnPackage(HotelPosition);
     }
 

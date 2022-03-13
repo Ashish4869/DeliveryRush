@@ -8,12 +8,22 @@ public class GameManager : MonoBehaviour
     ///controls the games actions and interacts with other managers
     ///</summary>
 
-    [SerializeField]
-
+    string _currentFoodInCar = "";
 
   
+
     public void RepositionElement(GameObject gameobject)
     {
         gameobject.transform.position = new Vector3(2000, 6000, 100);
     }
+
+    public void CurrentPackage(string food)
+    {
+        _currentFoodInCar = food;
+    }
+
+    public string GetCurrentFoodInCar() => _currentFoodInCar;
+
+    public void RemoveCurrentFood() => _currentFoodInCar = "";
+    
 }
