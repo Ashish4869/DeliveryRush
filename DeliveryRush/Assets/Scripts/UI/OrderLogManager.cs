@@ -28,11 +28,17 @@ public class OrderLogManager : MonoBehaviour
 
     GameManager _gameManager;
     EventManager _eventManager;
+    TipsManager _tipsManager;
 
-    List<List<string>> _OrderPendingList = new List<List<string>>(); //this stores the orders in a form of a matrix of size NX3 , where the rows have values of timestamp , food and hotel name
+    List<List<string>> _OrderPendingList = new List<List<string>>(); //this stores the orders in a form of a matrix of size NX3 ,
+                                                                     //where the rows have values such that
+                                                                     // a[0] = timestamp
+                                                                     // a[1] = food
+                                                                     // a[2] = hotel name
 
     void Start()
     {
+        _tipsManager = FindObjectOfType<TipsManager>();
         _gameManager = FindObjectOfType<GameManager>();
         _eventManager = FindObjectOfType<EventManager>();
         EventManager.OnOrderReceived += UpdateOrderLog;
@@ -133,6 +139,7 @@ public class OrderLogManager : MonoBehaviour
             if(OrderDetails[1] == FoodName)
             {
                 _OrderPendingList.Remove(OrderDetails);
+                _tipsManager.IncrementTips(OrderDetails[0]);
                 _orderPendingCount -= 1;
                 break;
             }
