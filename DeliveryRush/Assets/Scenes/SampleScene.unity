@@ -448,6 +448,122 @@ Transform:
   m_Father: {fileID: 1443660588}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &45514952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 45514953}
+  - component: {fileID: 45514954}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &45514953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45514952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1044966679}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45514954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45514952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75dc0738a0aa79d48ada1d27b645419f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - Name: CarEngineStart
+    volume: 1
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 4ce5536d09910a148a92ac5408ae3c4b, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: CarForwardEngine
+    volume: 0.598
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 1a28469b66ddc3f4394165b2634f368d, type: 3}
+    isLooping: 1
+    source: {fileID: 0}
+  - Name: CarIdleEngine
+    volume: 0.231
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 79a92db4ffb20fd449e669effcfbde63, type: 3}
+    isLooping: 1
+    source: {fileID: 0}
+  - Name: CarReverseEngine
+    volume: 0.675
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 3048985a7798b684d860bddb83bbc5c0, type: 3}
+    isLooping: 1
+    source: {fileID: 0}
+  - Name: CarMudEngine
+    volume: 0.273
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 01c67f1834599824a880b36282466c10, type: 3}
+    isLooping: 1
+    source: {fileID: 0}
+  - Name: GearFilp
+    volume: 0.752
+    pitch: 1.51
+    soundClip: {fileID: 8300000, guid: 9cc0bcb178f4544cf802521a0ff843da, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: CarHorn
+    volume: 0.752
+    pitch: 1.51
+    soundClip: {fileID: 8300000, guid: 74acc067c934ff04c922c01fb2d694de, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: CarHit
+    volume: 1
+    pitch: 0.69
+    soundClip: {fileID: 8300000, guid: bb2442d94eaea8644b0e874ecb83690e, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: MenuOn
+    volume: 1
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 095c60cb2f0464295ad90807600a9f9c, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: MenuClose
+    volume: 1
+    pitch: 1
+    soundClip: {fileID: 8300000, guid: 90db1992db053428a94b60666e8d151c, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: PlaceOrder
+    volume: 1
+    pitch: 0.5
+    soundClip: {fileID: 8300000, guid: 85dfb7bb2086549269c16c3e66ee62db, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
+  - Name: NotificationSound
+    volume: 0.5
+    pitch: 0.5
+    soundClip: {fileID: 8300000, guid: 1ff50437432bc4341bd17eef158b14b5, type: 3}
+    isLooping: 0
+    source: {fileID: 0}
 --- !u!1 &58426653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1279,7 @@ GameObject:
   - component: {fileID: 136937968}
   - component: {fileID: 136937967}
   - component: {fileID: 136937966}
+  - component: {fileID: 136937969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1289,6 +1406,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &136937969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136937963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af6cac99a6026e48ada7a9fc03dc3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &141536293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465310179}
   - component: {fileID: 465310180}
+  - component: {fileID: 465310181}
   m_Layer: 5
   m_Name: OrderLogUIParent
   m_TagString: Untagged
@@ -3372,6 +3502,18 @@ MonoBehaviour:
   _OrderPrefab: {fileID: 6893110424199198307, guid: 0520c1446fa626647b409992c7ea7d16, type: 3}
   _notifAnimator: {fileID: 405394455}
   oldFood: 
+--- !u!114 &465310181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465310178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fa1a8d30084114b9b5ac4a6d2af710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &469558145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3857,6 +3999,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2088627056}
+        m_TargetAssemblyTypeName: MenuSoundController, Assembly-CSharp
+        m_MethodName: CloseMenu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e35fa7b56516de14babcfa2a3269f664, type: 2}
+          m_ObjectArgumentAssemblyTypeName: FoodPackageSO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4370,7 +4524,11 @@ PrefabInstance:
       objectReference: {fileID: 1940461857}
     - target: {fileID: 3178206092534704721, guid: 548c8b7d1f990c34ca954523358d2c1a, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178206092534704721, guid: 548c8b7d1f990c34ca954523358d2c1a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 3178206092534970819, guid: 548c8b7d1f990c34ca954523358d2c1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7129,6 +7287,7 @@ Transform:
   - {fileID: 360410748}
   - {fileID: 1152762405}
   - {fileID: 194839799}
+  - {fileID: 45514953}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9291,7 +9450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670.0553, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1635861000
@@ -10691,6 +10850,10 @@ PrefabInstance:
       propertyPath: _waypoints.Array.data[12]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3178206092534704721, guid: 548c8b7d1f990c34ca954523358d2c1a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3178206092534970819, guid: 548c8b7d1f990c34ca954523358d2c1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.12
@@ -11846,6 +12009,7 @@ GameObject:
   - component: {fileID: 2088627053}
   - component: {fileID: 2088627054}
   - component: {fileID: 2088627055}
+  - component: {fileID: 2088627056}
   m_Layer: 5
   m_Name: HotelOrderUIParent
   m_TagString: Untagged
@@ -11901,6 +12065,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrepFoodUIPrefab: {fileID: 739496255639921250, guid: ca15e4c860671c34a8ab7d20d96af0fb, type: 3}
   PackText: {fileID: 1987231676}
+--- !u!114 &2088627056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088627052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32aaf1cba6289140af1f7c414fd9038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2089821279
 GameObject:
   m_ObjectHideFlags: 0

@@ -548,6 +548,7 @@ GameObject:
   - component: {fileID: 3178206092555794769}
   - component: {fileID: 3178206092534704720}
   - component: {fileID: 3178206092534704721}
+  - component: {fileID: 4256886336991721889}
   m_Layer: 0
   m_Name: NPCBody
   m_TagString: Untagged
@@ -673,3 +674,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.79, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &4256886336991721889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3178206092534704727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c6f75646609474cafe3a3e5cdc2498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

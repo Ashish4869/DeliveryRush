@@ -259,11 +259,10 @@ public class FoodPrepLoader : MonoBehaviour
             int j = selectedFood.GetFoodID() % 10;
 
             _OrdersRemainingPrepTime[i, j] = -1; //making so that order does exist
-            _havePlacedOrder -= 1; //reduing order
+            _havePlacedOrder -= 1; //reducing ordercount
 
             //get the hotel we ordered this from
             _eventManager.OnPackageParceledEvent(selectedFood);
-            //hoteluiManager.HideMenu();
             hoteluiManager.ActivateButton(selectedFood);
             //Destroyfood();
         }

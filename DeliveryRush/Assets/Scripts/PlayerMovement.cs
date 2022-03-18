@@ -7,9 +7,8 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// This class does the following
     /// 1.Control movement
-    /// 2.Sets Colors when package picked and delivered
-    /// 3.Controls speed based on whether the car is on the road
-    /// 4.Disables Player when map is shown
+    /// 2.Controls speed based on whether the car is on the road
+    /// 3.Disables Player when map is shown
     /// </summary>
 
 
@@ -20,11 +19,17 @@ public class PlayerMovement : MonoBehaviour
     float _rotationSpeed = 125f;
     bool _onRoad = true;
     bool _canDrive = true;
+
+   
+
     SpriteRenderer _carSprite;
+    PlayerSoundController _playerSoundController;
 
     private void Awake()
     {
         EventManager.OnShowMap += DisablePlayer;
+        _playerSoundController = GetComponent<PlayerSoundController>();
+        
     }
 
     private void Start()
@@ -52,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _speed = 0;
         }
+
         //forward-backward movement of the vehicle
         if (verticalDirection != 0)
         {
@@ -63,9 +69,8 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, 0, _rotationSpeed * horizontalDirection * Time.deltaTime));
         }
-        
-        
-        
+
+        _playerSoundController.SoundHandler(verticalDirection, horizontalDirection, _onRoad);
     }
 
     //Deals with the speed of the car based on the on its on
@@ -92,6 +97,4 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.OnShowMap -= DisablePlayer;
     }
-
-
 }

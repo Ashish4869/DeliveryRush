@@ -144,7 +144,7 @@ public class HotelUIManager : MonoBehaviour
 
     
 
-    //Activate Menu when the pack the food
+    //Activate Buttons and hide menu when the pack the food
     public void ActivateButton(FoodPackageSO fooditem)
     {
         int i = fooditem.GetFoodID() / 10;
