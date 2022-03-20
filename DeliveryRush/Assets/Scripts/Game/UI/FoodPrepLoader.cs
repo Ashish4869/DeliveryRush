@@ -283,4 +283,10 @@ public class FoodPrepLoader : MonoBehaviour
         }
         
     }
+
+    private void OnDestroy()
+    {
+        EventManager.OnPackageOrdered -= AddItemToLoad;
+        EventManager.OnOrderingFromRestaurant -= RetainPrepInformation;
+    }
 }

@@ -28,4 +28,9 @@ public class OrderListSounController : MonoBehaviour
     {
         audioManager.Play("ClickSound");
     }
+
+    private void OnDestroy()
+    {
+        EventManager.OnOrderReceived -= PlayNotifSound;
+    }
 }

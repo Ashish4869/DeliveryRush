@@ -15,10 +15,16 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject MainMenu;
 
+    LevelSelectManager _levelSelectManager;
+
+  
+
     public void ShowLevelSelect()
     {
         MainMenu.SetActive(false);
         LevelSelect.SetActive(true);
+        _levelSelectManager = FindObjectOfType<LevelSelectManager>();
+        _levelSelectManager.ConfigureLevels();
     }
 
     public void ShowMainMenu()

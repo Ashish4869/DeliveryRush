@@ -38,4 +38,11 @@ public class MenuSoundController : MonoBehaviour
         _audioManager.Play("MenuClose");
     }
 
+    private void OnDestroy()
+    {
+        EventManager.OnOrderingFromRestaurant -= OpenUpMenu;
+        EventManager.OnPackageParceled -= CloseMenu;
+        EventManager.OnPackageOrdered -= PlacedOrder;
+    }
+
 }

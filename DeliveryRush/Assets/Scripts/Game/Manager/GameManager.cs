@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
     ///controls the games actions and interacts with other managers
     ///</summary>
 
-    string _currentFoodInCar = "";
+    public string _currentFoodInCar = "";
+    Dictionary<string, int> OrderCount = new Dictionary<string, int>();
+
     private void Start()
     {
         FindObjectOfType<AudioManager>().Play("BackGroundNoise");
         FindObjectOfType<AudioManager>().Play("BGMUSIC");
+
+        EventManager.OnPackageDelivered += IncrementDeliveredCount;
     }
 
 
@@ -29,5 +33,31 @@ public class GameManager : MonoBehaviour
     public string GetCurrentFoodInCar() => _currentFoodInCar;
 
     public void RemoveCurrentFood() => _currentFoodInCar = "";
-    
+
+    public void GetFoodItemsOnLevel(FoodPackageSO[] foodItems)
+    {
+        for (int i = 0; i < foodItems.Length; i++)
+        {
+            OrderCount.Add(foodItems[i].GetFoodName(), 0);
+        }
+    }
+
+    void IncrementDeliveredCount()
+    {
+        OrderCount[_currentFoodInCar]++;
+        _currentFoodInCar = "";
+    }
+
+    public Dictionary<string, int> GetOrderCount()
+    {
+        return OrderCount;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.OnPackageDelivered -= IncrementDeliveredCount;
+    }
+
+
+
 }

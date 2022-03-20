@@ -67,6 +67,7 @@ public class Arrow : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.OnPackagePicked -= PackagePicked;
+        EventManager.OnPackageDelivered -= PackageDelivered;
     }
 
 

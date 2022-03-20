@@ -32,6 +32,8 @@ public class EventManager : MonoBehaviour
     ///     1.Hotel.cs - The package is given the right sprite and put in the appropriate place
     ///
     /// 7.OnOrderReceived - Event is fired when a new order is made from a customer , the following happends when the event is fired
+    /// 
+    /// 8.OnGameOver - Event is called when we have done all the deliveries or we run out of time
     /// </summary>
 
 
@@ -55,6 +57,9 @@ public class EventManager : MonoBehaviour
 
     public delegate void OrderReceived(string OrderDetails , int FoodID);
     public static event OrderReceived OnOrderReceived;
+
+    public delegate void GameOver();
+    public static event GameOver OnGameOver;
 
     public void OnPackagePickedEvent(string FoodName)
     {
@@ -109,6 +114,14 @@ public class EventManager : MonoBehaviour
         if(OnOrderReceived != null)
         {
             OnOrderReceived(OrderDetails,FoodID);
+        }
+    }
+
+    public void OnGameOverEvent()
+    {
+        if(OnGameOver != null)
+        {
+            OnGameOver();
         }
     }
    

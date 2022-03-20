@@ -47,13 +47,19 @@ public class HotelUIManager : MonoBehaviour
     void ShowMenu(List<FoodPackageSO> foodItems)
     {
         CurrentfoodItems = foodItems;
-        HotelUI.SetActive(true);
 
-        //Sets up the menu as per the food in the hotel
-        ConfigureMenu(foodItems);
+        if(HotelUI != null)
+        {
+            HotelUI.SetActive(true);
 
-        //Sets the loading animation of the order status
-        foodPrepLoader.LoadingAnimation(CurrentfoodItems);
+            //Sets up the menu as per the food in the hotel
+            ConfigureMenu(foodItems);
+
+            //Sets the loading animation of the order status
+            foodPrepLoader.LoadingAnimation(CurrentfoodItems);
+        }
+
+        
     }
 
     void ConfigureMenu(List<FoodPackageSO> FoodItems)
@@ -152,6 +158,11 @@ public class HotelUIManager : MonoBehaviour
 
         ButtonActivityStatus[i, j] = true;
         HideMenu();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.OnOrderingFromRestaurant += ShowMenu;
     }
 
 }

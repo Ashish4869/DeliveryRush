@@ -24,6 +24,7 @@ public class OrderLogManager : MonoBehaviour
     GameObject OrderLogListGameObject;
     int _orderPendingCount = 0; //counts the number of orders to be served;
     bool _showTable = false;
+    bool _noMoreOrders = false;
     public string oldFood =""; //this stores the old food so that the event is not fired unnecessarily
 
     GameManager _gameManager;
@@ -43,6 +44,28 @@ public class OrderLogManager : MonoBehaviour
         _eventManager = FindObjectOfType<EventManager>();
         EventManager.OnOrderReceived += UpdateOrderLog;
         EventManager.OnPackageDelivered += FoodDelivered;
+        EventManager.OnGameOver += DisableUI;
+    }
+
+    void DisableUI()
+    {
+        gameObject.SetActive(false);
+    }
+    private void Update()
+    {
+        if(_noMoreOrders)
+        {
+            if(_orderPendingCount == 0)
+            {
+                StartCoroutine("ShowScores");
+            }
+        }
+    }
+
+    IEnumerator ShowScores()
+    {
+        yield return new WaitForSeconds(2f);
+        _eventManager.OnGameOverEvent();
     }
 
     //Updates the Orderlog UI
@@ -152,10 +175,9 @@ public class OrderLogManager : MonoBehaviour
      void FoodDelivered()
      {
         string FoodDelivered = _gameManager.GetCurrentFoodInCar();
-        _gameManager.RemoveCurrentFood();
         oldFood = "";
         RemoveItemFromOrderList(FoodDelivered);
-     }
+    }
 
     //checking if the food obtained is in the order log list
     public bool CheckIfInOrderList()
@@ -173,5 +195,15 @@ public class OrderLogManager : MonoBehaviour
         return false;
     }
 
-   
+   public void NoMoreOrder()
+   {
+        _noMoreOrders = true;
+   }
+
+    private void OnDestroy()
+    {
+        EventManager.OnOrderReceived -= UpdateOrderLog;
+        EventManager.OnPackageDelivered -= FoodDelivered;
+        EventManager.OnGameOver -= DisableUI;
+    }
 }

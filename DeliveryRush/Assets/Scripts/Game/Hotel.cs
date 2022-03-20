@@ -82,4 +82,8 @@ public class Hotel : MonoBehaviour
         _CanOrder = false;
     }
 
+    private void OnDestroy()
+    {
+        EventManager.OnPackageParceled -= SendParcel;
+    }
 }

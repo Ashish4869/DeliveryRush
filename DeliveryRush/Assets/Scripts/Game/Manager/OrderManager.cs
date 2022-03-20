@@ -27,14 +27,17 @@ public class OrderManager : MonoBehaviour
 
     Clock gameClock;
     EventManager _eventManager;
+    OrderLogManager _orderLogManager;
+    GameManager gameManager;
 
-    Dictionary<FoodPackageSO, int> Orders = new Dictionary<FoodPackageSO, int>();
+    Dictionary<FoodPackageSO, int> Orders = new Dictionary<FoodPackageSO, int>(); //stores all the orders and the amount of orders in them
    string[] _hotelNames = new string[10];
 
     private void Awake()
     {
         _eventManager = FindObjectOfType<EventManager>();
         gameClock = FindObjectOfType<Clock>();
+        gameManager = FindObjectOfType<GameManager>();
 
         Hotel[] hotels = FindObjectsOfType<Hotel>();
 
@@ -46,6 +49,7 @@ public class OrderManager : MonoBehaviour
 
     private void Start()
     {
+
         //Create a dictionary for all the food items
         for(int i = 0; i < FoodItemAmount.Length; i++)
         {
@@ -53,11 +57,16 @@ public class OrderManager : MonoBehaviour
             _allOrders += FoodItemAmount[i];
         }
 
+        //sending the data of the food in this level
+        gameManager.GetFoodItemsOnLevel(FoodItems);
+
 
         //Initializing values
         _timeLowerBound = 10;
         _timeHigherBound = 20;
-        _timebetweenOrderNotification = Random.Range(0, 2);
+        _timebetweenOrderNotification = Random.Range(3, 5);
+
+        _orderLogManager = FindObjectOfType<OrderLogManager>();
     }
 
     private void Update()
@@ -84,6 +93,7 @@ public class OrderManager : MonoBehaviour
         // if all the orders have been processed disable game object
         if(_currentOrderCount >= _allOrders)
         {
+            _orderLogManager.NoMoreOrder();
             gameObject.SetActive(false);
             return;
         }
@@ -93,13 +103,13 @@ public class OrderManager : MonoBehaviour
         //if we dont have any orders on that item , get another order
         if (Orders[FoodItems[rand]] == 0)
         {
-            _timebetweenOrderNotification = 1;
+            _timebetweenOrderNotification = 0.5f;
             return;
         }
 
         _timeStamp = gameClock.GetTime();
         
-        //need to make this debug into a pass to UI
+        //pass the time that the food had been ordered to the order log
         int foodID = FoodItems[rand].GetFoodID() / 10;
         _OrderDetails = _timeStamp + "-" + FoodItems[rand].GetFoodName() + "-" + _hotelNames[FoodItems[rand].GetFoodID() / 10];
         _eventManager.OnOrderRecievedEvent(_OrderDetails , foodID);
@@ -124,4 +134,8 @@ public class OrderManager : MonoBehaviour
         return rand;
     }
 
+    public FoodPackageSO[] GetFoodItems()
+    {
+        return FoodItems;
+    }
 }

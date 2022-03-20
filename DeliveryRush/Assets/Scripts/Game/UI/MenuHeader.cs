@@ -36,4 +36,9 @@ public class MenuHeader : MonoBehaviour
         }
         
     }
+
+    private void OnDestroy()
+    {
+        EventManager.OnOrderingFromRestaurant -= SetHeader;
+    }
 }

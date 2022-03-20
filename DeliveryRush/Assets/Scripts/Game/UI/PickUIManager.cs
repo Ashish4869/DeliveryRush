@@ -40,6 +40,10 @@ public class PickUIManager : MonoBehaviour
         PickupUI.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        EventManager.OnPackageDelivered -= RemoveUI;
+    }
 
 
 

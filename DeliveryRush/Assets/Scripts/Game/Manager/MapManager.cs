@@ -54,7 +54,7 @@ public class MapManager : MonoBehaviour
         _showMap = !_showMap;
     }
 
-    private void Destroy()
+    private void OnDestroy()
     {
         EventManager.OnShowMap -= ShowMap;
     }

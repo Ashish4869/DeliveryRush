@@ -13,11 +13,20 @@ public class TipsManager : MonoBehaviour
     int TipsCount = 0;
     float TipsModifier = 0.4f;
 
+    int StartTime;
+    int EndTime;
+
     [SerializeField]
     TextMeshProUGUI TipsText;
     private void Awake()
     {
         _clock = FindObjectOfType<Clock>();
+    }
+
+    private void Start()
+    {
+        string Time = _clock.GetTime();
+        StartTime = GetTimeInMinutes(Time);
     }
 
     public void IncrementTips(string OrderTime)
@@ -53,10 +62,28 @@ public class TipsManager : MonoBehaviour
 
     void CalculateTips(int OrderTime , int DeliveredTime)
     {
-        if((DeliveredTime - OrderTime)  < 30) //give tips only if delivered with 30 min of delivery
+        if((DeliveredTime - OrderTime)  < 60) //give tips only if delivered with 30 min of delivery
         {
-            TipsCount += (int)(TipsModifier * (30 - (DeliveredTime - OrderTime))); //adds the time to the total tips count
+            TipsCount += (int)(TipsModifier * (60 - (DeliveredTime - OrderTime))); //adds the time to the total tips count
             TipsText.text = TipsCount.ToString("00000000");
         }
+    }
+
+    public int GetTipsCount()
+    {
+        return TipsCount;
+    }
+
+    public int GetStartTime()
+    {
+        return StartTime;
+    }
+
+    public int GetEndTime()
+    {
+        string Time = _clock.GetTime();
+        EndTime = GetTimeInMinutes(Time);
+        return EndTime;
+
     }
 }
