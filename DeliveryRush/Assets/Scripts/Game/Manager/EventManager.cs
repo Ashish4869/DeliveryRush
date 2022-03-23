@@ -124,5 +124,4 @@ public class EventManager : MonoBehaviour
             OnGameOver();
         }
     }
-   
 }

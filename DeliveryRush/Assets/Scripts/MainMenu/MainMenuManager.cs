@@ -23,7 +23,7 @@ public class MainMenuManager : MonoBehaviour
     {
         MainMenu.SetActive(false);
         LevelSelect.SetActive(true);
-        _levelSelectManager = FindObjectOfType<LevelSelectManager>();
+        _levelSelectManager = FindObjectOfType<LevelSelectManager>(); //Configures the levels based on the score stored in the disk
         _levelSelectManager.ConfigureLevels();
     }
 
@@ -35,7 +35,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        SceneManager.LoadScene(level);
+        FindObjectOfType<Transition>().LoadLevel(level);
     }
 
     public void QuitGame()

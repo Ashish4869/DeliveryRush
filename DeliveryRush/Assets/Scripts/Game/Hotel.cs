@@ -49,6 +49,7 @@ public class Hotel : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && _CanOrder)
         {
             _eventManager.OnOrderingfromRestaurantEvent(_foodItems);
+            _CanOrder = false;
         }
         
     }

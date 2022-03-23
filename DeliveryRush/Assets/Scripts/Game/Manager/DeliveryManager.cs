@@ -13,25 +13,19 @@ public class DeliveryManager : MonoBehaviour
     Delivery delivery;
     int prev = -1;
 
-    OrderLogManager _orderLogManager;
-
 
     private void Start()
     {
        delivery = GetComponentInChildren<Delivery>();
        EventManager.OnPackagePicked += ShowDeliveryMarker;
-        _orderLogManager = FindObjectOfType<OrderLogManager>();
     }
 
     void ShowDeliveryMarker(string food)
-    {
-        
-        
-            int i = Random.Range(0, 3);
+    {            int i = Random.Range(0, locations.Count);
 
             if (prev == i)
             {
-                i = Random.Range(0, 3);
+                i = Random.Range(0, locations.Count);
             }
 
             delivery.transform.position = locations[i].position;

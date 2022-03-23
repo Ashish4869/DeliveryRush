@@ -11,7 +11,7 @@ public class TipsManager : MonoBehaviour
 
     Clock _clock;
     int TipsCount = 0;
-    float TipsModifier = 0.4f;
+    float TipsModifier = 0.2f;
 
     int StartTime;
     int EndTime;
@@ -62,9 +62,9 @@ public class TipsManager : MonoBehaviour
 
     void CalculateTips(int OrderTime , int DeliveredTime)
     {
-        if((DeliveredTime - OrderTime)  < 60) //give tips only if delivered with 30 min of delivery
+        if((DeliveredTime - OrderTime)  < 120) //give tips only if delivered with 30 min of delivery
         {
-            TipsCount += (int)(TipsModifier * (60 - (DeliveredTime - OrderTime))); //adds the time to the total tips count
+            TipsCount += (int)(TipsModifier * (120 - (DeliveredTime - OrderTime))); //adds the time to the total tips count
             TipsText.text = TipsCount.ToString("00000000");
         }
     }

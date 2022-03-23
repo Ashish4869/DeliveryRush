@@ -62,8 +62,8 @@ public class OrderManager : MonoBehaviour
 
 
         //Initializing values
-        _timeLowerBound = 10;
-        _timeHigherBound = 20;
+        _timeLowerBound = 20;
+        _timeHigherBound = 40;
         _timebetweenOrderNotification = Random.Range(3, 5);
 
         _orderLogManager = FindObjectOfType<OrderLogManager>();

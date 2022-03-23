@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     /// This class does the following
     /// 1.Control movement
     /// 2.Controls speed based on whether the car is on the road
-    /// 3.Disables Player when map is shown
+    /// 3.Disables Player when any overlay ui is shown
     /// </summary>
 
 
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     bool _onRoad = true;
     bool _canDrive = true;
 
+
     int Gear = 0;
 
    
@@ -35,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         EventManager.OnShowMap += DisablePlayer;
+        EventManager.OnOrderingFromRestaurant += DisablePlayer;
+        EventManager.OnPackageParceled += EnablePlayer;
+        EventManager.OnGameOver += DisablePlayer;
         _playerSoundController = GetComponent<PlayerSoundController>();
-        
     }
 
     private void Start()
@@ -52,6 +55,13 @@ public class PlayerMovement : MonoBehaviour
 
     void CalcMovment()
     {
+        //make sure the player cant drive when the seeing the map
+        if (!_canDrive)
+        {
+            _playerSoundController.CarIdle();
+            return;
+        }
+
         float verticalDirection = Input.GetAxisRaw("Vertical");
         float horizontalDirection = -Input.GetAxisRaw("Horizontal");
 
@@ -61,30 +71,23 @@ public class PlayerMovement : MonoBehaviour
         //set Speed as per the gear
         if(Input.GetKey(KeyCode.LeftShift) && _onRoad)
         {
-            Gear = 1;
+            Gear = 1; //Gear 1 = SlowSpeed
             _speed = _lowGearSpeed;
             _rotationSpeed = _lowGearRotationSpeed;
         }
         else if(Input.GetKey(KeyCode.Space) && _onRoad)
         {
-            Gear = 3;
+            Gear = 3; //Gear 3 = HighSpeed
             _speed = _HighGearSpeed;
             _rotationSpeed = _HighGearRotationSpeed;
         }
         else if(_onRoad)
         {
-            Gear = 2;
+            Gear = 2; //Gear 2 = NormalSpeed
             _speed = _onRoadSpeed;
             _rotationSpeed = _OnRoadRotationSpeed;
         }
 
-
-
-        //make sure the player cant drive when the seeing the map
-        if (!_canDrive)
-        {
-            _speed = 0;
-        }
 
         //forward-backward movement of the vehicle
         if (verticalDirection != 0)
@@ -95,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         //turn only when you are moving
         if (horizontalDirection != 0 && verticalDirection !=0)
         {
-            transform.Rotate(new Vector3(0, 0, _rotationSpeed * horizontalDirection * Time.deltaTime));
+            transform.Rotate(new Vector3(0, 0, _rotationSpeed * (verticalDirection > 0 ? horizontalDirection : -horizontalDirection) * Time.deltaTime));
         }
 
         _playerSoundController.SoundHandler(verticalDirection, horizontalDirection, _onRoad , Gear);
@@ -118,11 +121,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void DisablePlayer() => _canDrive = !_canDrive;
+    public int GetGear() => Gear;
+
+    public void DisablePlayer() => _canDrive = !_canDrive;
+
+    void DisablePlayer(List<FoodPackageSO> nouse) => _canDrive = false;
+
+    public void EnablePlayer(FoodPackageSO nouse) => _canDrive = true;
 
 
     private void OnDestroy()
     {
         EventManager.OnShowMap -= DisablePlayer;
+        EventManager.OnOrderingFromRestaurant -= DisablePlayer;
+        EventManager.OnPackageParceled -= EnablePlayer;
     }
+
 }

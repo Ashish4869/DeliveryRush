@@ -16,4 +16,4 @@ MonoBehaviour:
   foodName: Cheese Burger
   foodDescription: Juicy Cheese Burger!
   foodSprite: {fileID: 21300000, guid: ca91825f9254b1340a5ed2ca8808b58c, type: 3}
-  prepTime: 5
+  prepTime: 30

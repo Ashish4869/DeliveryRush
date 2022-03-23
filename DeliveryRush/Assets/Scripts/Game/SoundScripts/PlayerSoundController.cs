@@ -9,6 +9,7 @@ public class PlayerSoundController : MonoBehaviour
     /// </summary>
 
     AudioManager _audioManager;
+    PlayerDamage _playerDamage;
 
     //Enum that olds the different sound that car engine can make
     enum CarEngineSounds
@@ -37,6 +38,7 @@ public class PlayerSoundController : MonoBehaviour
     private void Awake()
     {
         _audioManager = FindObjectOfType<AudioManager>();
+        _playerDamage = FindObjectOfType<PlayerDamage>();
     }
 
     private void Start()
@@ -47,11 +49,6 @@ public class PlayerSoundController : MonoBehaviour
     public void SoundHandler(float verticalDirection ,float horizontalDirection , bool OnRoad , int Gear) //plays the engine sound based on the current player input
     {
         _newcarEngineSounds = verticalDirection > 0 ? CarEngineSounds.CarForwardEngine : CarEngineSounds.CarReverseEngine;
-
-        if (verticalDirection == 0)
-        {
-            _newcarEngineSounds = CarEngineSounds.CarIdleEngine;
-        }
 
         if (Gear == 1)
         {
@@ -65,6 +62,11 @@ public class PlayerSoundController : MonoBehaviour
         if (!OnRoad)
         {
             _newcarEngineSounds = CarEngineSounds.CarMudEngine;
+        }
+
+        if (verticalDirection == 0)
+        {
+            _newcarEngineSounds = CarEngineSounds.CarIdleEngine;
         }
 
         //EngineSound
@@ -83,5 +85,11 @@ public class PlayerSoundController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _audioManager.Play("CarHit");
+        _playerDamage.CalcDamage();
+    }
+
+    public void CarIdle()
+    {
+        SoundHandler(0, 0, false, 0);
     }
 }

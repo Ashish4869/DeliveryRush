@@ -14,6 +14,7 @@ public class NPCSoundController : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("CarHorn");
             FindObjectOfType<AudioManager>().Play("CarHit");
+            FindObjectOfType<PlayerDamage>().CalcDamage();
         }
     }
 }
