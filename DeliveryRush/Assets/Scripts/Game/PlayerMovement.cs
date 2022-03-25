@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnOrderingFromRestaurant += DisablePlayer;
         EventManager.OnPackageParceled += EnablePlayer;
         EventManager.OnGameOver += DisablePlayer;
+        EventManager.OnCarTakenTooMuchDamage += DisablePlayer;
         _playerSoundController = GetComponent<PlayerSoundController>();
     }
 
@@ -135,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnShowMap -= DisablePlayer;
         EventManager.OnOrderingFromRestaurant -= DisablePlayer;
         EventManager.OnPackageParceled -= EnablePlayer;
+        EventManager.OnCarTakenTooMuchDamage -= DisablePlayer;
     }
 
 }

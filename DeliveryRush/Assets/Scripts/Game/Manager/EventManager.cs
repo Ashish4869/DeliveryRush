@@ -34,6 +34,8 @@ public class EventManager : MonoBehaviour
     /// 7.OnOrderReceived - Event is fired when a new order is made from a customer , the following happends when the event is fired
     /// 
     /// 8.OnGameOver - Event is called when we have done all the deliveries or we run out of time
+    /// 
+    /// 9.OnCarTakenTooMuchDamage - event is called when the car health reached zero
     /// </summary>
 
 
@@ -60,6 +62,9 @@ public class EventManager : MonoBehaviour
 
     public delegate void GameOver();
     public static event GameOver OnGameOver;
+
+    public delegate void CarTakenTooMuchDamage();
+    public static event CarTakenTooMuchDamage OnCarTakenTooMuchDamage;
 
     public void OnPackagePickedEvent(string FoodName)
     {
@@ -122,6 +127,14 @@ public class EventManager : MonoBehaviour
         if(OnGameOver != null)
         {
             OnGameOver();
+        }
+    }
+
+    public void OnCarTakenTooMuchDamageEvent()
+    {
+        if (OnCarTakenTooMuchDamage != null)
+        {
+            OnCarTakenTooMuchDamage();
         }
     }
 }
