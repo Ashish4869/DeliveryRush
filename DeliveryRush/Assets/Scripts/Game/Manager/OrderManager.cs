@@ -89,7 +89,6 @@ public class OrderManager : MonoBehaviour
     
     void NotifyOrder()
     {
-        
         // if all the orders have been processed disable game object
         if(_currentOrderCount >= _allOrders)
         {
@@ -137,5 +136,12 @@ public class OrderManager : MonoBehaviour
     public FoodPackageSO[] GetFoodItems()
     {
         return FoodItems;
+    }
+
+    private void OnDestroy()
+    {
+        Orders.Clear();
+        gameManager.ClearOrderCount();
+        
     }
 }

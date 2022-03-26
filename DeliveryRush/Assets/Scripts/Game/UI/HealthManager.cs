@@ -12,8 +12,8 @@ public class HealthManager : MonoBehaviour
     [SerializeField]
     Image Loader;
 
-    float Health = 100;
-    float MaxHealth = 100;
+    float Health;
+    float MaxHealth;
 
     EventManager _eventManager;
 
@@ -21,6 +21,9 @@ public class HealthManager : MonoBehaviour
     private void Awake()
     {
         _eventManager = FindObjectOfType<EventManager>();
+        CarSO car = FindObjectOfType<CarData>().GetSelectedCar();
+        MaxHealth = car.GetcarHealth();
+        Health = MaxHealth;
     }
        
 

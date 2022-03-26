@@ -53,4 +53,10 @@ public class AudioManager : MonoBehaviour
             s.source.Stop();
         }
     }
+
+    private void Start()
+    {
+        Play("BackGroundNoise");
+        Play("BGMUSIC");
+    }
 }

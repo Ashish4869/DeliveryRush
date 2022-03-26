@@ -135,7 +135,7 @@ public class OrderLogManager : MonoBehaviour
             }
         }
 
-        int max = Mathf.Min(_OrderPendingList.Count, 9); // we will show at max only 9 elements , has it will go out of screen
+        int max = Mathf.Min(_OrderPendingList.Count, 8); // we will show at max only 8 elements , as it will go out of screen
 
         //instantiates objects as children
         for (int i = 0; i < max; i++)
@@ -177,7 +177,7 @@ public class OrderLogManager : MonoBehaviour
         string FoodDelivered = _gameManager.GetCurrentFoodInCar();
         oldFood = "";
         RemoveItemFromOrderList(FoodDelivered);
-    }
+     }
 
     //checking if the food obtained is in the order log list
     public bool CheckIfInOrderList()

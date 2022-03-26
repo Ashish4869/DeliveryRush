@@ -15,6 +15,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject MainMenu;
 
+    [SerializeField]
+    GameObject CarSelect;
+
     LevelSelectManager _levelSelectManager;
 
   
@@ -35,7 +38,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        FindObjectOfType<Transition>().LoadLevel(level);
+        CarSelect.SetActive(true);
+        FindObjectOfType<CarSelect>().SetLevel(level);
+        gameObject.SetActive(false);
     }
 
     public void QuitGame()

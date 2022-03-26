@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     public string _currentFoodInCar = "";
     Dictionary<string, int> OrderCount = new Dictionary<string, int>();
 
+    CarSO SelectedCar;
+
+
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("BackGroundNoise");
-        FindObjectOfType<AudioManager>().Play("BGMUSIC");
-
         EventManager.OnPackageDelivered += IncrementDeliveredCount;
     }
 
@@ -59,5 +59,18 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void SetSelectedCar(CarSO car)
+    {
+        SelectedCar = car;
+    }
 
+    public CarSO GetSelectedCar()
+    {
+        return SelectedCar;
+    }
+
+    public void ClearOrderCount()
+    {
+        OrderCount.Clear();
+    }
 }

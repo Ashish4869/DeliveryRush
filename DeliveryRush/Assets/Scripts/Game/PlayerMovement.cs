@@ -9,29 +9,32 @@ public class PlayerMovement : MonoBehaviour
     /// 1.Control movement
     /// 2.Controls speed based on whether the car is on the road
     /// 3.Disables Player when any overlay ui is shown
+    /// 4.Gets the data of the selected car and sets the value 
     /// </summary>
 
 
-    [SerializeField] float _onRoadSpeed = 10f;
-    [SerializeField] float _offRoadSpeed = 3f;
-
-    float _OnRoadRotationSpeed = 125f;
+    float _OnRoadRotationSpeed;
     float _speed;
-    float _HighGearSpeed = 20f;
-    float _HighGearRotationSpeed = 75f;
-    float _lowGearSpeed = 5f;
-    float _lowGearRotationSpeed = 150f;
-    float _rotationSpeed = 125f;
+    float _HighGearSpeed;
+    float _HighGearRotationSpeed;
+    float _lowGearSpeed;
+    float _lowGearRotationSpeed;
+    float _rotationSpeed;
     bool _onRoad = true;
     bool _canDrive = true;
+    float _onRoadSpeed;
+    float _offRoadSpeed = 3f;
 
 
     int Gear = 0;
 
-   
 
+    CarSO currentCar;
+    CapsuleCollider2D carCapsule;
     SpriteRenderer _carSprite;
     PlayerSoundController _playerSoundController;
+    GameManager gameManager;
+    CarData carData;
 
     private void Awake()
     {
@@ -41,11 +44,21 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnGameOver += DisablePlayer;
         EventManager.OnCarTakenTooMuchDamage += DisablePlayer;
         _playerSoundController = GetComponent<PlayerSoundController>();
+
+        gameManager = FindObjectOfType<GameManager>();
+        carCapsule = GetComponent<CapsuleCollider2D>();
+        carData = FindObjectOfType<CarData>();
     }
 
     private void Start()
     {
         _carSprite = GetComponent<SpriteRenderer>();
+        GetCarData();
+
+        _HighGearSpeed = _onRoadSpeed + 5;
+        _lowGearSpeed = _onRoadSpeed - 7;
+        _HighGearRotationSpeed = _OnRoadRotationSpeed - 25f;
+        _lowGearRotationSpeed = _OnRoadRotationSpeed + 25f;
     }
 
     void Update()
@@ -130,6 +143,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnablePlayer(FoodPackageSO nouse) => _canDrive = true;
 
+    void GetCarData()
+    {
+        currentCar = carData.GetSelectedCar();
+        carCapsule.size = new Vector2(carCapsule.size.x ,currentCar.capsuleSize);
+        AssignSprite();
+        AssignSpeeds();
+    }
+
+    void AssignSprite()
+    {
+        SpriteRenderer[] CarParts = GetComponentsInChildren<SpriteRenderer>();
+        CarParts[0].sprite = currentCar.GetBodySprite();
+        CarParts[1].sprite = currentCar.GetRDoorSprite();
+        CarParts[2].sprite = currentCar.GetLDoorSprite();
+    }
+
+    void AssignSpeeds()
+    {
+        _onRoadSpeed = currentCar.baseCarSpeed;
+        _OnRoadRotationSpeed = currentCar.baseCarHandling;
+    }
 
     private void OnDestroy()
     {
