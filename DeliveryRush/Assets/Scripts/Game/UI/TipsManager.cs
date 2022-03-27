@@ -18,6 +18,11 @@ public class TipsManager : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI TipsText;
+
+    [SerializeField]
+    TextMeshProUGUI TipsTextPopUp;
+
+    Animator TipsPopUpAnimator;
     private void Awake()
     {
         _clock = FindObjectOfType<Clock>();
@@ -27,6 +32,7 @@ public class TipsManager : MonoBehaviour
     {
         string Time = _clock.GetTime();
         StartTime = GetTimeInMinutes(Time);
+        TipsPopUpAnimator = GetComponentInChildren<Animator>();
     }
 
     public void IncrementTips(string OrderTime)
@@ -64,9 +70,24 @@ public class TipsManager : MonoBehaviour
     {
         if((DeliveredTime - OrderTime)  < 120) //give tips only if delivered with 30 min of delivery
         {
-            TipsCount += (int)(TipsModifier * (120 - (DeliveredTime - OrderTime))); //adds the time to the total tips count
-            TipsText.text = TipsCount.ToString("00000000");
+            int TipsAmount = (int)(TipsModifier * (120 - (DeliveredTime - OrderTime)));
+            TipsCount += TipsAmount; //adds the time to the total tips count
+            TipsTextPopUp.text = "+" + TipsAmount;
+            TipsPopUpAnimator.SetTrigger("Tips");
+            StartCoroutine(CountTipsUp(TipsAmount));
         }
+    }
+
+    IEnumerator CountTipsUp(int tipsAmount)
+    {
+        Debug.Log("Hello");
+        while(tipsAmount > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            tipsAmount--;
+            TipsText.text = (TipsCount - tipsAmount).ToString("0000");
+        }
+        
     }
 
     public int GetTipsCount()
