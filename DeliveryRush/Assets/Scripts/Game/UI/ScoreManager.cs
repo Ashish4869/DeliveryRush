@@ -247,11 +247,13 @@ public class ScoreManager : MonoBehaviour
 
     public void ReplayLevel()
     {
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
         FindObjectOfType<Transition>().LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MainMenu()
     {
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
         FindObjectOfType<Transition>().LoadLevel(0);
     }
 

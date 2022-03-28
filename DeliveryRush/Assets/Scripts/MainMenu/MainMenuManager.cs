@@ -18,33 +18,54 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject CarSelect;
 
-    LevelSelectManager _levelSelectManager;
+    [SerializeField]
+    Animator MenuMenuUI;
 
-  
+    [SerializeField]
+    Animator LevelSelectUI;
+
+    LevelSelectManager _levelSelectManager;
+    AudioManager _audioManager;
+
+    private void Awake()
+    {
+        _audioManager = FindObjectOfType<AudioManager>();
+    }
+   
 
     public void ShowLevelSelect()
     {
-        MainMenu.SetActive(false);
-        LevelSelect.SetActive(true);
+        _audioManager.Play("ButtonClick");
+        MenuMenuUI.SetBool("ShowMenu", false);
+        LevelSelectUI.SetBool("ShowMenu", true);
         _levelSelectManager = FindObjectOfType<LevelSelectManager>(); //Configures the levels based on the score stored in the disk
         _levelSelectManager.ConfigureLevels();
     }
 
     public void ShowMainMenu()
     {
-        MainMenu.SetActive(true);
-        LevelSelect.SetActive(false);
+        _audioManager.Play("ButtonClick");
+        LevelSelectUI.SetBool("ShowMenu", false);
+        MenuMenuUI.SetBool("ShowMenu", true);
     }
 
     public void LoadLevel(int level)
     {
+        _audioManager.Play("ButtonClick");
         CarSelect.SetActive(true);
         FindObjectOfType<CarSelect>().SetLevel(level);
-        gameObject.SetActive(false);
+        MenuMenuUI.SetBool("ShowMenu", false);
+        LevelSelectUI.SetBool("ShowMenu", false);
+    }
+
+    public void LoadMenu()
+    {
+        LevelSelectUI.SetBool("ShowMenu", true);
     }
 
     public void QuitGame()
     {
+        _audioManager.Play("ButtonClick");
         Application.Quit();
     }
 

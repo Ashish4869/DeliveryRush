@@ -59,12 +59,14 @@ public class CarSelect : MonoBehaviour
 
     public void NextCar()
     {
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
         currentCar = (currentCar + 1) % cars.Length;
         ShowData();
     }
 
     public void PrevCar()
     {
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
         currentCar = (currentCar - 1) % cars.Length;
 
         if(currentCar < 0)
@@ -77,6 +79,7 @@ public class CarSelect : MonoBehaviour
 
     public void StartGame()
     {
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
         FindObjectOfType<CarData>().SetSelectedCar(SelectedCar);
         FindObjectOfType<Transition>().LoadLevel(level);
     }
@@ -88,7 +91,8 @@ public class CarSelect : MonoBehaviour
 
     public void Exit()
     {
-        Menu.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
+        Menu.GetComponent<MainMenuManager>().LoadMenu();
         gameObject.SetActive(false);
     }
 }
