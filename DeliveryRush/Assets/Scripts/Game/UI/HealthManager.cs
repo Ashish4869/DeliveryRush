@@ -31,10 +31,11 @@ public class HealthManager : MonoBehaviour
     IEnumerator YouDied() //call game over screen
     {
         FindObjectOfType<AudioManager>().Play("CarEngineFail");
+        yield return new WaitForSeconds(1f);
         _eventManager.OnCarTakenTooMuchDamageEvent();
         yield return new WaitForSeconds(2f);
 
-        gameObject.SetActive(false);
+       // gameObject.SetActive(false);
     }
 
     public void DecrementHealth(float damage)

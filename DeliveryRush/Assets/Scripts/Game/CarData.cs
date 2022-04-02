@@ -10,6 +10,8 @@ public class CarData : MonoBehaviour
     
     CarSO SelectedCar;
 
+    public CarSO defaultCar;
+
     public static CarData instance;
 
     private void Awake()
@@ -41,6 +43,9 @@ public class CarData : MonoBehaviour
         return SelectedCar;
     }
 
-   
+   public void SetDefaultCar()
+    {
+        SelectedCar = defaultCar;
+    }
     
 }

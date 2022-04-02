@@ -18,8 +18,8 @@ public class OrderManager : MonoBehaviour
     int _allOrders;
     int _currentOrderCount = 0;
     float _timebetweenOrderNotification;
-    int _timeLowerBound;
-    int _timeHigherBound;
+    [SerializeField] int _timeLowerBound;
+    [SerializeField] int _timeHigherBound;
     string _timeStamp;
     string _OrderDetails;
 
@@ -62,9 +62,7 @@ public class OrderManager : MonoBehaviour
 
 
         //Initializing values
-        _timeLowerBound = 20;
-        _timeHigherBound = 40;
-        _timebetweenOrderNotification = Random.Range(3, 5);
+        _timebetweenOrderNotification = Random.Range(5, 10);
 
         _orderLogManager = FindObjectOfType<OrderLogManager>();
     }
@@ -112,6 +110,8 @@ public class OrderManager : MonoBehaviour
         int foodID = FoodItems[rand].GetFoodID() / 10;
         _OrderDetails = _timeStamp + "-" + FoodItems[rand].GetFoodName() + "-" + _hotelNames[FoodItems[rand].GetFoodID() / 10];
         _eventManager.OnOrderRecievedEvent(_OrderDetails , foodID);
+
+        
 
 
         Orders[FoodItems[rand]]--;

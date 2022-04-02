@@ -12389,13 +12389,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a1f7eb3a4c1774fa6c3cfa07198ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodItemAmount: 0200000002000000010000000100000003000000
+  FoodItemAmount: 020000000300000002000000020000000100000001000000010000000100000001000000
   FoodItems:
-  - {fileID: 11400000, guid: fee6af74af9778f40a50958db0097c34, type: 2}
-  - {fileID: 11400000, guid: e35fa7b56516de14babcfa2a3269f664, type: 2}
   - {fileID: 11400000, guid: 1f5b133766e47df4eb76bc6671d3d8d6, type: 2}
-  - {fileID: 11400000, guid: d66de450635c048479faf915ef6b282c, type: 2}
-  - {fileID: 11400000, guid: bfd5b6e6dfb9bda4498d8ccd619eeee1, type: 2}
+  - {fileID: 11400000, guid: abb1cdf873f825f4e99b15c16bd9fa4d, type: 2}
+  - {fileID: 11400000, guid: 52963628d94fbc64fae659be9d507ea1, type: 2}
+  - {fileID: 11400000, guid: 79277a79f1dfb7142b23235b97c9d042, type: 2}
+  - {fileID: 11400000, guid: e35fa7b56516de14babcfa2a3269f664, type: 2}
+  - {fileID: 11400000, guid: fee6af74af9778f40a50958db0097c34, type: 2}
+  - {fileID: 11400000, guid: b5167085dde4fe04cb1d5e2fbf7f4bb4, type: 2}
+  - {fileID: 11400000, guid: 3e77c0dc0541ca3449e8b6adbe3be86e, type: 2}
+  - {fileID: 11400000, guid: 63418bfb2ed17924d912f7cd99ecce52, type: 2}
+  _timeLowerBound: 3
+  _timeHigherBound: 5
 --- !u!1 &1187456452
 GameObject:
   m_ObjectHideFlags: 0
@@ -15745,7 +15751,7 @@ PrefabInstance:
     - target: {fileID: 8128052258196745897, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 00b02c26504499b4aba8817c7897a358, type: 3}
+      objectReference: {fileID: 21300000, guid: ee9f4bb95ea8e8549a419b5eb8d135d0, type: 3}
     - target: {fileID: 8128052258196745897, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -15780,7 +15786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _HotelID
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _orderUI
@@ -15788,7 +15794,7 @@ PrefabInstance:
       objectReference: {fileID: 1470743887}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _hotelName
-      value: kebab
+      value: Ramen Ya
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _packageSpawnPoint
@@ -15800,7 +15806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _foodItems.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: foodItems.Array.data[0]
@@ -15809,11 +15815,15 @@ PrefabInstance:
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _foodItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: bfd5b6e6dfb9bda4498d8ccd619eeee1, type: 2}
+      objectReference: {fileID: 11400000, guid: abb1cdf873f825f4e99b15c16bd9fa4d, type: 2}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _foodItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d66de450635c048479faf915ef6b282c, type: 2}
+      objectReference: {fileID: 11400000, guid: 52963628d94fbc64fae659be9d507ea1, type: 2}
+    - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: _foodItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 79277a79f1dfb7142b23235b97c9d042, type: 2}
     m_RemovedComponents:
     - {fileID: 312071624, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
@@ -16661,11 +16671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616048467730071388, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 616048467730071388, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3654230108536679667, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_Name
@@ -16721,11 +16731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6942943022605197076, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6942943022605197076, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7653974614302961003, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_Layer
@@ -16810,7 +16820,7 @@ PrefabInstance:
     - target: {fileID: 8128052258196745897, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 00b02c26504499b4aba8817c7897a358, type: 3}
+      objectReference: {fileID: 21300000, guid: d01cec2517ce97846beae2a79a2c0271, type: 3}
     - target: {fileID: 8128052258196745897, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -16845,7 +16855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _HotelID
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _orderUI
@@ -16853,7 +16863,7 @@ PrefabInstance:
       objectReference: {fileID: 1537909816}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _hotelName
-      value: kebab
+      value: piZZa house
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _packageSpawnPoint
@@ -16865,7 +16875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _foodItems.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: foodItems.Array.data[0]
@@ -16874,11 +16884,15 @@ PrefabInstance:
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _foodItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: bfd5b6e6dfb9bda4498d8ccd619eeee1, type: 2}
+      objectReference: {fileID: 11400000, guid: b5167085dde4fe04cb1d5e2fbf7f4bb4, type: 2}
     - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: _foodItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d66de450635c048479faf915ef6b282c, type: 2}
+      objectReference: {fileID: 11400000, guid: 3e77c0dc0541ca3449e8b6adbe3be86e, type: 2}
+    - target: {fileID: 8128052258196745902, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
+      propertyPath: _foodItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 63418bfb2ed17924d912f7cd99ecce52, type: 2}
     m_RemovedComponents:
     - {fileID: 312071624, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}

@@ -12,9 +12,20 @@ public class NPCSoundController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            
             FindObjectOfType<AudioManager>().Play("CarHorn");
             FindObjectOfType<AudioManager>().Play("CarHit");
+            
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("hit");
             FindObjectOfType<PlayerDamage>().CalcDamage();
         }
+       
     }
 }

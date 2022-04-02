@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     float _lowGearRotationSpeed;
     float _rotationSpeed;
     bool _onRoad = true;
-    bool _canDrive = true;
+    public bool _canDrive = true;
     float _onRoadSpeed;
     float _offRoadSpeed = 3f;
 

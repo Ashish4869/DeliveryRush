@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4051b52234164f911f4cfabe6c655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCar: {fileID: 11400000, guid: e3bdd6e7892c9e6428eeeee38a870529, type: 2}
 --- !u!1 &90824359
 GameObject:
   m_ObjectHideFlags: 0
@@ -13471,7 +13472,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2017037065}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 189195443}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: LoadTutorialLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2017037065
 MonoBehaviour:
   m_ObjectHideFlags: 0

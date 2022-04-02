@@ -69,4 +69,11 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void LoadTutorialLevel()
+    {
+        _audioManager.Play("ButtonClick");
+        FindObjectOfType<CarData>().SetDefaultCar();
+        FindObjectOfType<Transition>().LoadLevel(5);
+    }
+
 }
