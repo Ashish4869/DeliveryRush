@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         EventManager.OnPackageDelivered += IncrementDeliveredCount;
+        FindObjectOfType<AudioManager>().Play("HeavyRain");
     }
 
 
