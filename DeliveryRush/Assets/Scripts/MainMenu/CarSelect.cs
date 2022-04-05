@@ -79,9 +79,10 @@ public class CarSelect : MonoBehaviour
 
     public void StartGame()
     {
+
+        FindObjectOfType<Transition>().LoadLevel(level);
         FindObjectOfType<AudioManager>().Play("ButtonClick");
         FindObjectOfType<CarData>().SetSelectedCar(SelectedCar);
-        FindObjectOfType<Transition>().LoadLevel(level);
     }
 
     public void SetLevel(int level)

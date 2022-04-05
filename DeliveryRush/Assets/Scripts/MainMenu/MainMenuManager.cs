@@ -31,15 +31,19 @@ public class MainMenuManager : MonoBehaviour
     {
         _audioManager = FindObjectOfType<AudioManager>();
     }
-   
+
+    private void Start()
+    {
+        _levelSelectManager = FindObjectOfType<LevelSelectManager>(); //Configures the levels based on the score stored in the disk
+        _levelSelectManager.ConfigureLevels();
+    }
+
 
     public void ShowLevelSelect()
     {
         _audioManager.Play("ButtonClick");
         MenuMenuUI.SetBool("ShowMenu", false);
         LevelSelectUI.SetBool("ShowMenu", true);
-        _levelSelectManager = FindObjectOfType<LevelSelectManager>(); //Configures the levels based on the score stored in the disk
-        _levelSelectManager.ConfigureLevels();
     }
 
     public void ShowMainMenu()
@@ -71,9 +75,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadTutorialLevel()
     {
+        FindObjectOfType<Transition>().LoadLevel(5);
         _audioManager.Play("ButtonClick");
         FindObjectOfType<CarData>().SetDefaultCar();
-        FindObjectOfType<Transition>().LoadLevel(5);
     }
 
 }

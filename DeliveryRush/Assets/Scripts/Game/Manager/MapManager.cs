@@ -31,6 +31,7 @@ public class MapManager : MonoBehaviour
         EventManager.OnShowMap += ShowMap;
         EventManager.OnGameOver += CantUseMap;
         EventManager.OnCarTakenTooMuchDamage += CantUseMap;
+        EventManager.OnOrderingFromRestaurant += CantUseMap;
 
     }
 
@@ -93,10 +94,21 @@ public class MapManager : MonoBehaviour
         EventManager.OnShowMap -= ShowMap;
         EventManager.OnGameOver -= CantUseMap;
         EventManager.OnCarTakenTooMuchDamage -= CantUseMap;
+        EventManager.OnOrderingFromRestaurant -= CantUseMap;
     }
 
     void CantUseMap()
     {
         _canUseMap = false;
+    }
+
+    void CantUseMap(List<FoodPackageSO> foodItems)
+    {
+        _canUseMap = false;
+    }
+
+    public void CanUseMap()
+    {
+        _canUseMap = true;
     }
 }

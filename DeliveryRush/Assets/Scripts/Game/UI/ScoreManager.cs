@@ -78,6 +78,8 @@ public class ScoreManager : MonoBehaviour
         ScoreSystem.SetActive(true);
         UpdateDeliveryStatusCount(); //counts up the food that we have ordered
         LoadScoreBar(); // loads the score bar
+
+       
     }
 
     void UpdateDeliveryStatusCount()
@@ -154,6 +156,7 @@ public class ScoreManager : MonoBehaviour
 
         SaveStartsObtainedInThisLevel(i);
         ShowButtons();
+        PlayerPrefs.Save();// Saves all values
     }
 
     void ShowButtons()
@@ -261,7 +264,5 @@ public class ScoreManager : MonoBehaviour
     {
         EventManager.OnGameOver -= ShowScores;
     }
-
-
     
 }

@@ -12,15 +12,22 @@ public class Clock : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI ClockTime;
 
+    [SerializeField]
+    float StartHour;
+
+    [SerializeField]
+    string AMorPM;
     private const float REAL_TIME_TO_MIN_IN_GAME = 6f;
     float currentTime=0;
-    float hourTime = 8f;
+    float hourTime = 0f;
     float MinTime = 0;
     string AM_PM = "AM";
 
     // Start is called before the first frame update
     void Start()
     {
+        hourTime = StartHour;
+        AM_PM = AMorPM;
         ClockTime.text = hourTime.ToString("00") + ":" + MinTime.ToString("00") + " "+ AM_PM;
     }
 

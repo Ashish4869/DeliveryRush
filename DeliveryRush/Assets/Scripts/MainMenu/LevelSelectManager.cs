@@ -22,15 +22,49 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField]
     Sprite star;
 
+ 
     public void ConfigureLevels()
     {
+        ButtonActivity();
+        SetScores();
+    }
+
+    void ButtonActivity()
+    {
+        Button[] buttons = ButtonGroup.GetComponentsInChildren<Button>();
+        buttons[0].interactable = true;
+
+        int i = 2;
+
+        while(i <= 4)
+        { 
+            if(PlayerPrefs.HasKey("Level" + (i - 1).ToString() + "BestTime"))
+            {
+                if(PlayerPrefs.GetInt("Level" + (i - 1).ToString() + "Stars") > 1)
+                {
+                    buttons[i - 1].interactable = true;
+                }
+            }
+            else
+            {
+                buttons[i - 1].interactable = false;
+            }
+
+            i++;
+        }
+    }
+
+    void SetScores()
+    {
         int i = 1;
+
         foreach (Transform item in ButtonGroup.transform)
         {
             TextMeshProUGUI[] texts = item.GetComponentsInChildren<TextMeshProUGUI>();
 
-            if(!PlayerPrefs.HasKey("Level" + i + "BestTime"))
+            if (!PlayerPrefs.HasKey("Level" + i + "BestTime"))
             {
+
                 return;
             }
             else
@@ -49,7 +83,7 @@ public class LevelSelectManager : MonoBehaviour
                     }
                 }
             }
-            
+
 
             if (!PlayerPrefs.HasKey("Level" + i + "Stars"))
             {
@@ -58,7 +92,7 @@ public class LevelSelectManager : MonoBehaviour
             else
             {
                 int j = PlayerPrefs.GetInt("Level" + i + "Stars");
-                while (j!=0)
+                while (j != 0)
                 {
                     Image[] images = item.GetComponentsInChildren<Image>();
 
@@ -78,13 +112,12 @@ public class LevelSelectManager : MonoBehaviour
     }
 
    int[] MinToHour(int time)
-    {
+   {
         int[] t1 = new int[2];
 
         t1[0] = time / 60;
         t1[1] = time % 60;
 
         return t1;
-        
-    }
+   }
 }

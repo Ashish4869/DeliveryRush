@@ -58,8 +58,6 @@ public class HotelUIManager : MonoBehaviour
             //Sets the loading animation of the order status
             foodPrepLoader.LoadingAnimation(CurrentfoodItems);
         }
-
-        
     }
 
     void ConfigureMenu(List<FoodPackageSO> FoodItems)
@@ -146,8 +144,22 @@ public class HotelUIManager : MonoBehaviour
 
         foodPrepLoader.Destroyfood();
         HotelUI.SetActive(false);
+
+        AllowReOrdering();
     }
 
+    public void AllowReOrdering()
+    {
+        Hotel[] hotels = FindObjectsOfType<Hotel>();
+
+        foreach (var Hotel in hotels)
+        {
+            if(CurrentfoodItems[0].GetFoodID()/10 == Hotel.GetHotelID())
+            {
+                Hotel.CanOrder();
+            }
+        }
+    }
     
 
     //Activate Buttons and hide menu when the pack the food

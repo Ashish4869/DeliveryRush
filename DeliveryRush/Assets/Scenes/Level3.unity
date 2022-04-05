@@ -5524,9 +5524,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc484fa585c94d340b96bd7f3991feef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HighSpeedDamage: 7
-  LowSpeedDamage: 2
-  NormalSpeedDamage: 5
+  HighSpeedDamage: 5
+  LowSpeedDamage: 1
+  NormalSpeedDamage: 3
 --- !u!1 &137522578
 GameObject:
   m_ObjectHideFlags: 0
@@ -15517,7 +15517,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.014641285, y: -0.04392326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -15528,7 +15528,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.3968973, y: 4.601879}
   m_EdgeRadius: 0
 --- !u!114 &460261516
 MonoBehaviour:
@@ -17524,6 +17524,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: e35fa7b56516de14babcfa2a3269f664, type: 2}
           m_ObjectArgumentAssemblyTypeName: FoodPackageSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1187456454}
+        m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
+        m_MethodName: CanUseMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -27788,6 +27800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClockTime: {fileID: 734995666}
+  StartHour: 7
+  AMorPM: PM
 --- !u!1 &740095285
 GameObject:
   m_ObjectHideFlags: 0

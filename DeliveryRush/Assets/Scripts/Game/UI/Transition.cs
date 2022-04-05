@@ -12,7 +12,7 @@ public class Transition : MonoBehaviour
     [SerializeField]
     Animator CrossFade;
 
-    float LoadTime = 1.5f;
+    float LoadTime = 0.85f;
 
     public void LoadLevel(int BuildIndex)
     {

@@ -51,7 +51,6 @@ public class Hotel : MonoBehaviour
             _eventManager.OnOrderingfromRestaurantEvent(_foodItems);
             _CanOrder = false;
         }
-        
     }
 
     //Gets the info and sends to the hotelmanager script
@@ -82,6 +81,8 @@ public class Hotel : MonoBehaviour
         }
         _CanOrder = false;
     }
+
+    public void CanOrder() => _CanOrder = true;
 
     private void OnDestroy()
     {
