@@ -26228,7 +26228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a1f7eb3a4c1774fa6c3cfa07198ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodItemAmount: 0100000000000000000000000000000000000000
+  FoodItemAmount: 0200000002000000010000000100000003000000
   FoodItems:
   - {fileID: 11400000, guid: fee6af74af9778f40a50958db0097c34, type: 2}
   - {fileID: 11400000, guid: e35fa7b56516de14babcfa2a3269f664, type: 2}
@@ -46279,7 +46279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7653974614302961005, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.78
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8128052258196745896, guid: 6eccc7c8c5070e442baf9fc50aff66b0, type: 3}
       propertyPath: m_RootOrder

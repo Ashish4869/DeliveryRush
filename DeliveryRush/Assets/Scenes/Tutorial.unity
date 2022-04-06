@@ -5976,6 +5976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClockTime: {fileID: 734995666}
+  StartHour: 8
+  AMorPM: AM
 --- !u!1 &749905804
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class MapManager : MonoBehaviour
         EventManager.OnGameOver += CantUseMap;
         EventManager.OnCarTakenTooMuchDamage += CantUseMap;
         EventManager.OnOrderingFromRestaurant += CantUseMap;
-
+        EventManager.OnPackageParceled += CanUseMap;
     }
 
     // Update is called once per frame
@@ -105,6 +105,11 @@ public class MapManager : MonoBehaviour
     void CantUseMap(List<FoodPackageSO> foodItems)
     {
         _canUseMap = false;
+    }
+
+    void CanUseMap(FoodPackageSO foodItems)
+    {
+        _canUseMap = true;
     }
 
     public void CanUseMap()

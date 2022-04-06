@@ -78,8 +78,6 @@ public class ScoreManager : MonoBehaviour
         ScoreSystem.SetActive(true);
         UpdateDeliveryStatusCount(); //counts up the food that we have ordered
         LoadScoreBar(); // loads the score bar
-
-       
     }
 
     void UpdateDeliveryStatusCount()
@@ -224,12 +222,12 @@ public class ScoreManager : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("Level" + level + "BestTime") > (EndTime - StartTime))
             {
-                PlayerPrefs.SetInt("Level1BestTime", (EndTime - StartTime));
+                PlayerPrefs.SetInt("Level" + level + "BestTime", (EndTime - StartTime));
             }
         }
         else
         {
-            PlayerPrefs.SetInt("Level1BestTime", (EndTime - StartTime));
+            PlayerPrefs.SetInt("Level" + level + "BestTime", (EndTime - StartTime));
         }
     }
 

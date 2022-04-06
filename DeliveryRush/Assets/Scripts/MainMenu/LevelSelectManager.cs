@@ -22,11 +22,24 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField]
     Sprite star;
 
- 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Scores();
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            DeleteScores();
+        }
+    }
+
     public void ConfigureLevels()
     {
-        ButtonActivity();
         SetScores();
+        ButtonActivity();
+
     }
 
     void ButtonActivity()
@@ -38,7 +51,7 @@ public class LevelSelectManager : MonoBehaviour
 
         while(i <= 4)
         { 
-            if(PlayerPrefs.HasKey("Level" + (i - 1).ToString() + "BestTime"))
+            if(PlayerPrefs.HasKey("Level" + (i - 1).ToString() + "Stars"))
             {
                 if(PlayerPrefs.GetInt("Level" + (i - 1).ToString() + "Stars") > 1)
                 {
@@ -64,7 +77,6 @@ public class LevelSelectManager : MonoBehaviour
 
             if (!PlayerPrefs.HasKey("Level" + i + "BestTime"))
             {
-
                 return;
             }
             else
@@ -73,13 +85,13 @@ public class LevelSelectManager : MonoBehaviour
                 {
                     if (text.text.StartsWith("Best Time :"))
                     {
-                        int[] time = MinToHour(PlayerPrefs.GetInt("Level" + i + "BestTime"));
+                        int[] time = MinToHour(PlayerPrefs.GetInt("Level" + i + "BestTime" , 0));
                         text.text = "Best Time : " + time[0] + " hr " + time[1] + " min";
                     }
 
                     if (text.text.StartsWith("Max Tips :"))
                     {
-                        text.text = "Max Tips : $" + PlayerPrefs.GetInt("Level" + i + "Tips");
+                        text.text = "Max Tips : $" + PlayerPrefs.GetInt("Level" + i + "Tips",0);
                     }
                 }
             }
@@ -92,8 +104,11 @@ public class LevelSelectManager : MonoBehaviour
             else
             {
                 int j = PlayerPrefs.GetInt("Level" + i + "Stars");
-                while (j != 0)
+
+                if( j == 0 )
                 {
+                    return;
+                }
                     Image[] images = item.GetComponentsInChildren<Image>();
 
                     foreach (var image in images)
@@ -102,10 +117,14 @@ public class LevelSelectManager : MonoBehaviour
                         {
                             image.color = yellow;
                             j--;
+
+                            if( j == 0 )
+                            {
+                                break;
+                            }
                         }
 
                     }
-                }
             }
             i++;
         }
@@ -120,4 +139,19 @@ public class LevelSelectManager : MonoBehaviour
 
         return t1;
    }
+
+    void Scores()
+    {
+        for (int i = 1; i <= 4; i++)
+        {
+            Debug.Log("Stars " + i + ": "+ PlayerPrefs.GetInt("Level" + i + "Stars"));
+            Debug.Log("BestTime " + i + ": " + PlayerPrefs.GetInt("Level" + i + "BestTime"));
+            Debug.Log("Tips " + i + ": " + PlayerPrefs.GetInt("Level" + i + "Tips"));
+        }
+    }
+
+    void DeleteScores()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
