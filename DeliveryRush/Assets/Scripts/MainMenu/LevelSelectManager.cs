@@ -38,7 +38,7 @@ public class LevelSelectManager : MonoBehaviour
     public void ConfigureLevels()
     {
         SetScores();
-        ButtonActivity();
+       // ButtonActivity();
 
     }
 

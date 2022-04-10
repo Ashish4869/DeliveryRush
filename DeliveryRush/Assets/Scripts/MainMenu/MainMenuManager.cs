@@ -35,7 +35,13 @@ public class MainMenuManager : MonoBehaviour
         _audioManager = FindObjectOfType<AudioManager>();
     }
 
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            Tralier();
+        }
+    }
 
     public void ShowLevelSelect()
     {
@@ -95,6 +101,11 @@ public class MainMenuManager : MonoBehaviour
         FindObjectOfType<Transition>().LoadLevel(5);
         _audioManager.Play("ButtonClick");
         FindObjectOfType<CarData>().SetDefaultCar();
+    }
+
+    public  void Tralier()
+    {
+        FindObjectOfType<Transition>().LoadLevel(6);
     }
 
 }
